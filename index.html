@@ -27,18 +27,19 @@
     <h1 class="title-page">POMODORO TIMER</h1>
 
     <div class="phases">
-        <p>Work</p>
-        <p>Break</p>
+        <p id="cyclesWork">Work</p>
+        <p id="cyclesBreak">Break</p>
+        <p id="cycles">1/4</p>
     </div>
 
     <p class="timer-pomodoro" id="timer">25:00</p>
 
     <div class="bouton-container">
-        <button id="btn-start" onclick="startTimer();">
+        <button id="btn-play" onclick="startTimer();">
             <i class="fa-solid fa-play"></i>
         </button>
 
-        <button id="btn-pause" onclick="stopTimer();">
+        <button class="hide" id="btn-pause" onclick="stopTimer();">
             <i class="fa-solid fa-pause"></i>
         </button>
 

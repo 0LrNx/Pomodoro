@@ -17,7 +17,10 @@
 .bouton-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    width: 10%;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -30,7 +33,7 @@
 .phases {
     display: flex;
     justify-content: space-between;
-    width: 10%;
+    width: 20%;
     margin-left: auto;
     margin-right: auto;
 }
