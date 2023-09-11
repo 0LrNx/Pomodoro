@@ -18,12 +18,12 @@
         <p>Break</p>
     </div>
 
-    <p class="timer-pomodoro"id="timer">25:00</p>
+    <p class="timer-pomodoro"id="timer"></p>
 
     <div class="bouton-container">
-        <img id="bouton-play" class="img-play" onClick="startTimer()" src="/assets/img/play-solid.svg" alt="bouton play">
+        <img id="bouton-play" class="img-play" onLoad=startTimer() onClick="startTimer()" src="/assets/img/play-solid.svg" alt="bouton play">
         <img id="bouton-pause" class="img-pause" src="/assets/img/pause-solid.svg" alt="bouton pause">
-        <img class="img-stop" src="/assets/img/stop-solid.svg" alt="bouton stop">
+        <img id="bouton-stop" class="img-stop" src="/assets/img/stop-solid.svg" alt="bouton stop">
     </div>
 
 
