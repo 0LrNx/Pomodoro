@@ -7,6 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro</title>
     <link rel="icon" href="assets/img/icon-pomodoro.png">
+
+
+
+    <!-- ICON -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+    <!-- FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- CSS -->
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -18,12 +31,20 @@
         <p>Break</p>
     </div>
 
-    <p class="timer-pomodoro"id="timer"></p>
+    <p class="timer-pomodoro" id="timer">25:00</p>
 
     <div class="bouton-container">
-        <img id="bouton-play" class="img-play" onLoad=startTimer() onClick="startTimer()" src="/assets/img/play-solid.svg" alt="bouton play">
-        <img id="bouton-pause" class="img-pause" src="/assets/img/pause-solid.svg" alt="bouton pause">
-        <img id="bouton-stop" class="img-stop" src="/assets/img/stop-solid.svg" alt="bouton stop">
+        <button class="btn-sucess" onclick="startTimer();">
+            <i class="fa-solid fa-play"></i>
+        </button>
+
+        <button class="btn-danger" onclick="stopTimer();">
+            <i class="fa-solid fa-pause"></i>
+        </button>
+
+        <button onclick="resetTimer();">
+            <i class="fa-solid fa-stop"></i>
+        </button>
     </div>
 
 
