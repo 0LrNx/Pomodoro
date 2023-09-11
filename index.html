@@ -6,14 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro</title>
-    <link rel="icon" href="assets/img/image-pomodoro.png">
+    <link rel="icon" href="assets/img/icon-pomodoro.png">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <h1>POMODORO TIMER</h1>
+    <h1 class="title-page">POMODORO TIMER</h1>
 
+    <div class="phases">
+        <p>Work</p>
+        <p>Break</p>
+    </div>
 
+    <p class="timer-pomodoro"id="timer">25:00</p>
+
+    <div class="bouton-container">
+        <img id="bouton-play" class="img-play" onClick="startTimer()" src="/assets/img/play-solid.svg" alt="bouton play">
+        <img id="bouton-pause" class="img-pause" src="/assets/img/pause-solid.svg" alt="bouton pause">
+        <img class="img-stop" src="/assets/img/stop-solid.svg" alt="bouton stop">
+    </div>
 
 
 
