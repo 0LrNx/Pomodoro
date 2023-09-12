@@ -8,8 +8,6 @@
     <title>Pomodoro</title>
     <link rel="icon" href="assets/img/icon-pomodoro.png">
 
-
-
     <!-- ICON -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -33,14 +31,26 @@
         <p id="cyclesNumber">#0</p>
     </div>
 
-    <p class="timer-pomodoro" id="timer">25:00</p>
+    <div class="progress-bar-container">
+        <div class="progress-bar">
+            <div class="progress-bar-inner">
+                <p class="timer-pomodoro" id="timer"></p>
+            </div>
+        </div>
+    </div>
 
     <div class="bouton-container">
+
+        
         <button id="btn-play" onclick="startTimer()">
-            <i class="fa-solid fa-play"></i>
+            start
         </button>
 
-        <button id="btn-reset"  class="hide" onclick="resetTimer()">
+        <button class="hide" id="btn-pause" onclick="startTimer()">
+            pause
+        </button>
+
+        <button id="btn-reset"  onclick="resetTimer()">
             <i class="fa-solid fa-stop"></i>
         </button>
     </div>

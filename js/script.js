@@ -1,6 +1,6 @@
 let isRunning = false;
 let isWorkTime = true;
-let workTime = 25 * 60;  // 25 minutes en secondes
+let workTime = 0.05 * 60;  // 25 minutes en secondes
 let breakTime = 5 * 60;  // 5 minutes en secondes
 let longBreakTime = 20 * 60;  // 15 minutes en secondes
 let currentTime = workTime;
@@ -10,6 +10,7 @@ let cpt = 0;
 let completedCycles = 0;
 
 var buttonPlay = document.getElementById('btn-play');
+var buttonPause = document.getElementById('btn-pause');
 var buttonReset = document.getElementById('btn-reset');
 
 var Work = document.getElementById('cyclesWork');
@@ -17,23 +18,32 @@ var Break = document.getElementById('cyclesBreak');
 var LongBreak = document.getElementById('cyclesLongBreak');
 var cycleNumber = document.getElementById('cyclesNumber');
 
+window.onload = function () {
+    buttonPause.style.display = "none";
+    updateDisplay();
+}
 
+// TODO LISTENER SUR LES BUTTONS
 
 function displayButton() {
-    buttonReset.style.display = (buttonReset.style.display == 'block') ? "none" : "block";
     buttonPlay.style.display = (buttonPlay.style.display == 'none') ? "block" : "none";
+    buttonPause.style.display = (buttonPause.style.display == 'block') ? "none" : "block";
 }
 
 function startTimer() {
-    Work.style.color = "red";
+    Work.style.color = "green";
     if (!isRunning) {
         isRunning = true;
         timer = setInterval(updateTimer, 1000);
         buttonPlay.style.display = "none";
-        buttonReset.style.display = "block";
+        buttonPause.style.display = "block";
     }
 }
 
+
+const buttonWorkComplete = {
+    backgroundColor: 'red',
+}
 
 function updateTimer() {
     currentTime--;
@@ -42,12 +52,12 @@ function updateTimer() {
             isWorkTime = false;
             currentTime = breakTime;
             Work.style.color = "black";
-            Break.style.color = "red";
-            LongBreak.style.color = "black";
+            Break.style.color = "green";
+            LongBreak.style = "black";
         } else {
             isWorkTime = true;
             currentTime = workTime;
-            Work.style.color = "red";
+            Work.style.color = "green";
             Break.style.color = "black"
             LongBreak.style.color = "black";
             cpt++;
@@ -59,7 +69,7 @@ function updateTimer() {
                 currentTime = longBreakTime;
                 Work.style.color = "black";
                 Break.style.color = "black";
-                LongBreak.style.color = "red";
+                LongBreak.style.color = "green";
             }
         }
     }
@@ -81,8 +91,8 @@ function resetTimer() {
     currentTime = workTime;
     updateDisplay();
     buttonPlay.style.display = "block";
-    buttonReset.style.display = "none";
-    Work.style.color = "red";
-    Break.style.color = "black";
-    LongBreak.style.color = "black";
+    buttonPause.style.display = "none";
+    Work.style.color = "black";
+    Break.style.color = "white";
+    LongBreak.style.color = "white";
 }

@@ -1,6 +1,6 @@
 * {
     margin: 0;
-    background: rgb(150, 150, 150);
+    background: rgb(224, 102, 102);
     font-family: "Poppins", sans-serif;
 }
 
@@ -11,12 +11,93 @@
     margin-bottom: 20px;
 }
 
+
+
+/* ===== BUTTON ===== */
+
 .bouton-container {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+    gap: 20px
+}
+
+#cyclesBreak,
+#cyclesLongBreak {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 500px;
+    border: 1px solid white;
+    color: white;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#cyclesBreak:hover,
+#cyclesLongBreak:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 500px;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    border: white;
+    align-items: center;
+    color: black;
+}
+
+.buttonWorkComplete {
+    background-color: red;
+    color: green;
+}
+
+#btn-play,
+#btn-pause,
+#cyclesWork {
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 500px;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    border: white;
+    align-items: center;
+}
+
+#btn-play:hover,
+#btn-pause:hover,
+#cyclesWork:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 500px;
+    border: 1px solid white;
+    color: white;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
 }
 
 
+#btn-reset {
+    border: none;
+    cursor: pointer;
+    width: 20px;
+}
+
+
+
+
+/* ==================== */
 .timer-pomodoro {
     display: flex;
     justify-content: center;
@@ -26,7 +107,7 @@
 .phases {
     display: flex;
     justify-content: space-between;
-    width: 20%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -37,4 +118,34 @@
 
 .show {
     display: block;
+}
+
+
+/* ===== PROGRESS BAR ===== */
+
+.progress-bar-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+.progress-bar {
+    height: 200px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.progress-bar-inner {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid white;
 }
