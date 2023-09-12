@@ -3,12 +3,14 @@ let isWorkTime = true;
 let workTime = 0.1 * 60;  // 25 minutes en secondes
 let breakTime = 0.2 * 60;  // 5 minutes en secondes
 let currentTime = workTime;
+let cpt = 0;
 
 var buttonPause = document.getElementById('btn-pause');
 var buttonPlay = document.getElementById('btn-play');
 
 var Work = document.getElementById('cyclesWork');
 var Break = document.getElementById('cyclesBreak');
+var cycleNumber = document.getElementById('cyclesNumber');
 
 function displayButton() {
     buttonPause.style.display = (buttonPause.style.display == 'block') ? "none" : "block";
@@ -25,7 +27,6 @@ function startTimer() {
     }
 }
 
-// ...
 
 function updateTimer() {
     currentTime--;
@@ -35,16 +36,18 @@ function updateTimer() {
             currentTime = breakTime;
             Work.style.color = "black";
             Break.style.color = "red";
-
         } else {
             isWorkTime = true;
             currentTime = workTime;
             Work.style.color = "red";
-            Break.style.color = "black";
+            Break.style.color = "black"
+            cpt++;
+            cycleNumber.textContent = `#${cpt}`;
         }
     }
     updateDisplay();
 }
+
 
 function updateDisplay() {
     const minutes = Math.floor(currentTime / 60);
