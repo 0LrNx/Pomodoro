@@ -40,6 +40,15 @@ function startTimer() {
     }
 }
 
+function pauseTimer() {
+    if (isRunning) {
+        isRunning = false;
+        clearInterval(timer);
+        buttonPlay.style.display = "block";
+        buttonPause.style.display = "none";
+    }
+}
+
 
 const buttonWorkComplete = {
     backgroundColor: 'red',
