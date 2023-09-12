@@ -50,6 +50,11 @@ window.onload = function () {
     });
 }
 
+buttonPlay.addEventListener('click', startTimer);
+buttonPause.addEventListener('click', pauseTimer);
+buttonReset.addEventListener('click', resetTimer);
+
+
 
 
 
