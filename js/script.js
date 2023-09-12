@@ -2,14 +2,19 @@ let isRunning = false;
 let isWorkTime = true;
 let workTime = 25 * 60;  // 25 minutes en secondes
 let breakTime = 5 * 60;  // 5 minutes en secondes
+let longBreakTime = 20 * 60;  // 15 minutes en secondes
 let currentTime = workTime;
+
+
 let cpt = 0;
+let completedCycles = 0;
 
 var buttonPlay = document.getElementById('btn-play');
 var buttonReset = document.getElementById('btn-reset');
 
 var Work = document.getElementById('cyclesWork');
 var Break = document.getElementById('cyclesBreak');
+var LongBreak = document.getElementById('cyclesLongBreak');
 var cycleNumber = document.getElementById('cyclesNumber');
 
 
@@ -38,13 +43,24 @@ function updateTimer() {
             currentTime = breakTime;
             Work.style.color = "black";
             Break.style.color = "red";
+            LongBreak.style.color = "black";
         } else {
             isWorkTime = true;
             currentTime = workTime;
             Work.style.color = "red";
             Break.style.color = "black"
+            LongBreak.style.color = "black";
             cpt++;
             cycleNumber.textContent = `#${cpt}`;
+
+            if (cpt % 4 === 0) {
+                console.log("hello");
+                isWorkTime = false;
+                currentTime = longBreakTime;
+                Work.style.color = "black";
+                Break.style.color = "black";
+                LongBreak.style.color = "red";
+            }
         }
     }
     updateDisplay();
@@ -62,11 +78,11 @@ function updateDisplay() {
 function resetTimer() {
     clearInterval(timer);
     isRunning = false;
-    currentTime =  workTime;
+    currentTime = workTime;
     updateDisplay();
     buttonPlay.style.display = "block";
     buttonReset.style.display = "none";
     Work.style.color = "red";
     Break.style.color = "black";
+    LongBreak.style.color = "black";
 }
-
