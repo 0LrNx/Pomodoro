@@ -18,6 +18,8 @@ var Break = document.getElementById('cyclesBreak');
 var LongBreak = document.getElementById('cyclesLongBreak');
 var cycleNumber = document.getElementById('cyclesNumber');
 
+
+
 window.onload = function () {
     buttonPause.style.display = "none";
     updateDisplay();
@@ -56,11 +58,25 @@ buttonReset.addEventListener('click', resetTimer);
 
 
 
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("btn-settings");
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 
-
-
-// TODO LISTENER SUR LES BUTTONS
 
 
 function startTimer() {
