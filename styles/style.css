@@ -94,13 +94,11 @@
 }
 
 
-.btn-reset {
+.btn-reset, .btn-settings {
     border: none;
     cursor: pointer;
     color: white;
-    font-size: 30px; /* Augmenter la taille du texte */
-    /* width: 150px; /* Augmenter la largeur du bouton */
-    /* height: 50px; Augmenter la hauteur du bouton */
+    font-size: 30px;
 }
 
 .active {
