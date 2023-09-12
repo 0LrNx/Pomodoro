@@ -5,21 +5,23 @@ let breakTime = 0.2 * 60;  // 5 minutes en secondes
 let currentTime = workTime;
 let cpt = 0;
 
-var buttonPause = document.getElementById('btn-pause');
 var buttonPlay = document.getElementById('btn-play');
+var buttonReset = document.getElementById('btn-reset');
 
 var Work = document.getElementById('cyclesWork');
 var Break = document.getElementById('cyclesBreak');
 var cycleNumber = document.getElementById('cyclesNumber');
 
+
+
 function displayButton() {
-    buttonPause.style.display = (buttonPause.style.display == 'block') ? "none" : "block";
+    buttonReset.style.display = (buttonReset.style.display == 'block') ? "none" : "block";
     buttonPlay.style.display = (buttonPlay.style.display == 'none') ? "block" : "none";
 }
 
 function startTimer() {
     buttonPlay.onclick = displayButton;
-    buttonPause.onclick = displayButton;
+    buttonReset.onclick = displayButton;
     Work.style.color = "red";
     if (!isRunning) {
         isRunning = true;

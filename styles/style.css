@@ -11,16 +11,9 @@
     margin-bottom: 20px;
 }
 
-
-
-
 .bouton-container {
     display: flex;
-    flex-direction: row;
-    width: 10%;
-    justify-content: space-between;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
 }
 
 
