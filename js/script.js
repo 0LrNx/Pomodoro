@@ -58,3 +58,15 @@ function updateDisplay() {
     timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
+
+function resetTimer() {
+    clearInterval(timer);
+    isRunning = false;
+    currentTime =  workTime;
+    updateDisplay();
+    buttonPlay.style.display = "block";
+    buttonReset.style.display = "none";
+    Work.style.color = "red";
+    Break.style.color = "black";
+}
+
