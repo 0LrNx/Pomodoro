@@ -23,7 +23,8 @@
 }
 
 #cyclesBreak,
-#cyclesLongBreak {
+#cyclesLongBreak,
+#cyclesWork {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,7 +38,8 @@
 }
 
 #cyclesBreak:hover,
-#cyclesLongBreak:hover {
+#cyclesLongBreak:hover,
+#cyclesWork:hover {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,14 +53,18 @@
     color: black;
 }
 
-.buttonWorkComplete {
-    background-color: red;
-    color: green;
+#cyclesBreak.active,
+#cyclesLongBreak.active,
+#cyclesWork.active {
+    background-color: white;
+    color: black;
 }
 
+
+
+
 #btn-play,
-#btn-pause,
-#cyclesWork {
+#btn-pause {
     color: black;
     display: flex;
     justify-content: center;
@@ -73,8 +79,7 @@
 }
 
 #btn-play:hover,
-#btn-pause:hover,
-#cyclesWork:hover {
+#btn-pause:hover {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,16 +93,21 @@
 }
 
 
-#btn-reset {
+.btn-reset {
     border: none;
     cursor: pointer;
-    width: 20px;
+    color: white;
+}
+
+.active {
+    background-color: purple;
+    color: white;
 }
 
 
 
-
 /* ==================== */
+
 .timer-pomodoro {
     display: flex;
     justify-content: center;
@@ -107,7 +117,7 @@
 .phases {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 20%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -149,3 +159,42 @@
     border-radius: 50%;
     border: 2px solid white;
 }
+
+
+.number-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+
+/* ===== MEDIA QUERIES ===== */
+
+@media screen and (max-width: 768px) {
+
+    * {
+        background: purple;
+    }
+
+    .phases {
+        font-size: 12px;
+        width: 50%;
+        gap: 20px;
+    }
+
+}
+
+
+.work-bg {
+    background-color: white;
+}
+
+.break-bg {
+    background-color: transparent;
+}
+
+.longBreakTime-bg {
+    background-color: transparent;
+}
+

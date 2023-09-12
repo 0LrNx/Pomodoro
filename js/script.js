@@ -1,6 +1,6 @@
 let isRunning = false;
 let isWorkTime = true;
-let workTime = 0.05 * 60;  // 25 minutes en secondes
+let workTime = 25 * 60;  // 25 minutes en secondes
 let breakTime = 5 * 60;  // 5 minutes en secondes
 let longBreakTime = 20 * 60;  // 15 minutes en secondes
 let currentTime = workTime;
@@ -21,17 +21,45 @@ var cycleNumber = document.getElementById('cyclesNumber');
 window.onload = function () {
     buttonPause.style.display = "none";
     updateDisplay();
+
+    Break.addEventListener('click', function () {
+        currentTime = breakTime;
+        isWorkTime = false;
+        updateDisplay();
+        this.classList.add("active");
+        Work.classList.remove("active");
+        LongBreak.classList.remove("active");
+    });
+
+    Work.addEventListener('click', function () {
+        currentTime = workTime;
+        isWorkTime = true;
+        updateDisplay();
+        this.classList.add("active");
+        Break.classList.remove("active");
+        LongBreak.classList.remove("active");
+    });
+
+    LongBreak.addEventListener('click', function () {
+        currentTime = longBreakTime;
+        isWorkTime = false;
+        updateDisplay();
+        this.classList.add("active");
+        Work.classList.remove("active");
+        Break.classList.remove("active");
+    });
 }
+
+
+
+
+
 
 // TODO LISTENER SUR LES BUTTONS
 
-function displayButton() {
-    buttonPlay.style.display = (buttonPlay.style.display == 'none') ? "block" : "none";
-    buttonPause.style.display = (buttonPause.style.display == 'block') ? "none" : "block";
-}
 
 function startTimer() {
-    Work.style.color = "green";
+    Work.classList.add("active");
     if (!isRunning) {
         isRunning = true;
         timer = setInterval(updateTimer, 1000);
@@ -39,6 +67,8 @@ function startTimer() {
         buttonPause.style.display = "block";
     }
 }
+
+
 
 function pauseTimer() {
     if (isRunning) {
@@ -50,9 +80,6 @@ function pauseTimer() {
 }
 
 
-const buttonWorkComplete = {
-    backgroundColor: 'red',
-}
 
 function updateTimer() {
     currentTime--;
@@ -60,30 +87,30 @@ function updateTimer() {
         if (isWorkTime) {
             isWorkTime = false;
             currentTime = breakTime;
-            Work.style.color = "black";
-            Break.style.color = "green";
-            LongBreak.style = "black";
+            Work.classList.remove("active");
+            Break.classList.add("active");
+            LongBreak.classList.remove("active");
         } else {
             isWorkTime = true;
             currentTime = workTime;
-            Work.style.color = "green";
-            Break.style.color = "black"
-            LongBreak.style.color = "black";
+            Work.classList.add("active");
+            Break.classList.remove("active");
+            LongBreak.classList.remove("active");
             cpt++;
             cycleNumber.textContent = `#${cpt}`;
 
             if (cpt % 4 === 0) {
-                console.log("hello");
                 isWorkTime = false;
                 currentTime = longBreakTime;
-                Work.style.color = "black";
-                Break.style.color = "black";
-                LongBreak.style.color = "green";
+                Work.classList.remove("active");
+                Break.classList.remove("active");
+                LongBreak.classList.add("active");
             }
         }
     }
     updateDisplay();
 }
+
 
 
 function updateDisplay() {
@@ -94,6 +121,7 @@ function updateDisplay() {
 }
 
 
+
 function resetTimer() {
     clearInterval(timer);
     isRunning = false;
@@ -101,7 +129,8 @@ function resetTimer() {
     updateDisplay();
     buttonPlay.style.display = "block";
     buttonPause.style.display = "none";
-    Work.style.color = "black";
-    Break.style.color = "white";
-    LongBreak.style.color = "white";
+    Work.classList.remove("active");
+    Break.classList.remove("active");
+    LongBreak.classList.remove("active");
+
 }

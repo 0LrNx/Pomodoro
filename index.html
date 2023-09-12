@@ -22,13 +22,12 @@
 </head>
 
 <body>
-    <h1 class="title-page">POMODORO TIMER</h1>
+    <h1 class="title-page"><u>POMODORO TIMER</u></h1>
 
     <div class="phases">
         <p id="cyclesWork">Work</p>
         <p id="cyclesBreak">Break</p>
         <p id="cyclesLongBreak">Long Break</p>
-        <p id="cyclesNumber">#0</p>
     </div>
 
     <div class="progress-bar-container">
@@ -41,7 +40,7 @@
 
     <div class="bouton-container">
 
-        
+
         <button id="btn-play" onclick="startTimer()">
             start
         </button>
@@ -50,9 +49,13 @@
             pause
         </button>
 
-        <button id="btn-reset"  onclick="resetTimer()">
+        <button class="btn-reset" id="btn-reset" onclick="resetTimer()">
             <i class="fa-solid fa-stop"></i>
         </button>
+    </div>
+
+    <div class="number-container">
+        <p id="cyclesNumber">#0</p>
     </div>
 
 
