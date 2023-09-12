@@ -1,7 +1,7 @@
 let isRunning = false;
 let isWorkTime = true;
-let workTime = 0.1 * 60;  // 25 minutes en secondes
-let breakTime = 0.2 * 60;  // 5 minutes en secondes
+let workTime = 25 * 60;  // 25 minutes en secondes
+let breakTime = 5 * 60;  // 5 minutes en secondes
 let currentTime = workTime;
 let cpt = 0;
 
@@ -20,12 +20,12 @@ function displayButton() {
 }
 
 function startTimer() {
-    buttonPlay.onclick = displayButton;
-    buttonReset.onclick = displayButton;
     Work.style.color = "red";
     if (!isRunning) {
         isRunning = true;
         timer = setInterval(updateTimer, 1000);
+        buttonPlay.style.display = "none";
+        buttonReset.style.display = "block";
     }
 }
 
@@ -57,3 +57,4 @@ function updateDisplay() {
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
+
