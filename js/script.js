@@ -8,6 +8,7 @@ let currentTime = workTime;
 
 let cpt = 0;
 let completedCycles = 0;
+let isLongBreakTime = false;
 
 var buttonPlay = document.getElementById('btn-play');
 var buttonPause = document.getElementById('btn-pause');
@@ -18,37 +19,46 @@ var Break = document.getElementById('cyclesBreak');
 var LongBreak = document.getElementById('cyclesLongBreak');
 var cycleNumber = document.getElementById('cyclesNumber');
 
+var timeSettingsForm = document.getElementById('time-settings');
+
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("btn-settings");
+var span = document.getElementsByClassName("close")[0];
 
 
 window.onload = function () {
     buttonPause.style.display = "none";
+    Work.classList.add("active");
     updateDisplay();
 
-    Break.addEventListener('click', function () {
-        currentTime = breakTime;
+    LongBreak.addEventListener('click', function () {
+        currentTime = longBreakTime;
         isWorkTime = false;
+        isLongBreakTime = true;
         updateDisplay();
         this.classList.add("active");
         Work.classList.remove("active");
-        LongBreak.classList.remove("active");
+        Break.classList.remove("active");
     });
 
     Work.addEventListener('click', function () {
         currentTime = workTime;
         isWorkTime = true;
+        isLongBreakTime = false;
         updateDisplay();
         this.classList.add("active");
         Break.classList.remove("active");
         LongBreak.classList.remove("active");
     });
 
-    LongBreak.addEventListener('click', function () {
-        currentTime = longBreakTime;
+    Break.addEventListener('click', function () {
+        currentTime = breakTime;
         isWorkTime = false;
+        isLongBreakTime = false;
         updateDisplay();
         this.classList.add("active");
         Work.classList.remove("active");
-        Break.classList.remove("active");
+        LongBreak.classList.remove("active");
     });
 }
 
@@ -56,11 +66,6 @@ buttonPlay.addEventListener('click', startTimer);
 buttonPause.addEventListener('click', pauseTimer);
 buttonReset.addEventListener('click', resetTimer);
 
-
-
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("btn-settings");
-var span = document.getElementsByClassName("close")[0];
 
 btn.onclick = function () {
     document.getElementById('work-time').value = workTime / 60;
@@ -79,7 +84,7 @@ window.onclick = function (event) {
     }
 }
 
-var timeSettingsForm = document.getElementById('time-settings');
+
 
 timeSettingsForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -99,7 +104,6 @@ timeSettingsForm.addEventListener('submit', function (event) {
 
 
 function startTimer() {
-    Work.classList.add("active");
     if (!isRunning) {
         isRunning = true;
         timer = setInterval(updateTimer, 1000);
@@ -118,6 +122,8 @@ function pauseTimer() {
         buttonPause.style.display = "none";
     }
 }
+
+
 
 
 
@@ -141,6 +147,7 @@ function updateTimer() {
 
             if (cpt % 4 === 0) {
                 isWorkTime = false;
+                isLongBreakTime = true;
                 currentTime = longBreakTime;
                 Work.classList.remove("active");
                 Break.classList.remove("active");
@@ -151,15 +158,19 @@ function updateTimer() {
     updateDisplay();
 }
 
-
-
 function updateDisplay() {
     const minutes = Math.floor(currentTime / 60);
     const seconds = currentTime % 60;
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    updateWindowsDisplay(minutes, seconds);
 }
 
+
+function updateWindowsDisplay(minutes, seconds) {
+    let phaseName = isLongBreakTime ? 'LongBreak' : (isWorkTime ? 'Work' : 'Break');
+    document.title = `POMODORO-${phaseName} : ${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}`;
+}
 
 
 function resetTimer() {
