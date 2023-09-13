@@ -99,6 +99,7 @@ timeSettingsForm.addEventListener('submit', function (event) {
 
 
 function startTimer() {
+    Work.classList.add("active");
     if (!isRunning) {
         isRunning = true;
         timer = setInterval(updateTimer, 1000);
@@ -136,7 +137,7 @@ function updateTimer() {
             Break.classList.remove("active");
             LongBreak.classList.remove("active");
             cpt++;
-            cycleNumber.textContent = `#${cpt}`;
+            cycleNumber.textContent = `cycles #${cpt}`;
 
             if (cpt % 4 === 0) {
                 isWorkTime = false;

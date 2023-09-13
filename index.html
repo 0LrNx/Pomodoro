@@ -10,19 +10,21 @@
 
     <!-- ICON -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" >
 
 
     <!-- FONT -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" >
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <h1 class="title-page"><u>POMODORO TIMER</u></h1>
+    <header>
+        <h1 class="title-page">POMODORO TIMER</h1>
+    </header>
 
     <div class="phases">
         <p id="cyclesWork">Work</p>
@@ -33,13 +35,13 @@
     <div class="progress-bar-container">
         <div class="progress-bar">
             <div class="progress-bar-inner">
-                <p class="timer-pomodoro" id="timer"></p>
+                <h2 class="timer-pomodoro" id="timer">25:00</h2>
             </div>
         </div>
     </div>
 
     <div class="number-container">
-        <p id="cyclesNumber">#0</p>
+        <h3 id="cyclesNumber">cycles : #0</h3>
     </div>
 
     <div class="bouton-container">
@@ -53,8 +55,9 @@
             pause
         </button>
 
-        <button class="btn-reset" id="btn-reset">
-            <i class="fa-solid fa-rotate-right"></i>
+        <button type="submit" class="btn-reset" id="btn-reset">
+            <!-- <h4 class="hide">text</h4> -->
+            <em class="fa-solid fa-rotate-right"></em>
         </button>
 
 
@@ -62,14 +65,15 @@
 
 
         <button class="btn-settings" id="btn-settings">
-            <i class="fa-solid fa-gear"></i>
+            <!-- <h4 class="hide" >text</h4> -->
+            <em class="fa-solid fa-gear"></em>
         </button>
 
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <div class="top-modal">
-                    <h1 class="modal-title"><u>Time parameters</u></h1>
-                    <i class="fa-solid fa-xmark close"></i>
+                    <h1 class="modal-title">Time parameters</h1>
+                    <em class="fa-solid fa-xmark close"></em>
                 </div>
                 <form id="time-settings">
                     <label class="text-before-modification" for="work-time">Working time :</label>
