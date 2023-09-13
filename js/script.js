@@ -63,6 +63,9 @@ var btn = document.getElementById("btn-settings");
 var span = document.getElementsByClassName("close")[0];
 
 btn.onclick = function () {
+    document.getElementById('work-time').value = workTime / 60;
+    document.getElementById('break-time').value = breakTime / 60;
+    document.getElementById('long-break-time').value = longBreakTime / 60;
     modal.style.display = "block";
 }
 
@@ -76,11 +79,26 @@ window.onclick = function (event) {
     }
 }
 
+var timeSettingsForm = document.getElementById('time-settings');
+
+timeSettingsForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    workTime = parseInt(document.getElementById('work-time').value) * 60;
+    breakTime = parseInt(document.getElementById('break-time').value) * 60;
+    longBreakTime = parseInt(document.getElementById('long-break-time').value) * 60;
+    if (isWorkTime) {
+        currentTime = workTime;
+    } else {
+        currentTime = breakTime;
+    }
+    modal.style.display = "none";
+    updateDisplay();
+});
+
 
 
 
 function startTimer() {
-    Work.classList.add("active");
     if (!isRunning) {
         isRunning = true;
         timer = setInterval(updateTimer, 1000);

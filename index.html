@@ -68,7 +68,16 @@
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h1>coucou je suis le menu</h1>
+                <h1 class="modal-title"><u>Time parameters</u></h1>
+                <form id="time-settings">
+                    <label  for="work-time">Working time :</label>
+                    <input class="text-modification" type="number" id="work-time" name="work-time" min="1">
+                    <label for="break-time">Break time :</label>
+                    <input class="text-modification" type="number" id="break-time" name="break-time" min="1">
+                    <label for="long-break-time">Long Break time :</label>
+                    <input class="text-modification" type="number" id="long-break-time" name="long-break-time" min="1">
+                    <input class="button-save" type="submit" value="Save">
+                </form>
             </div>
         </div>
     </div>
