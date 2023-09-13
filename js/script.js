@@ -26,6 +26,15 @@ var btn = document.getElementById("btn-settings");
 var span = document.getElementsByClassName("close")[0];
 
 
+
+let progress = 0;
+let interval;
+
+
+let elapsedTime = 0;
+let phaseDuration;
+
+
 window.onload = function () {
     buttonPause.style.display = "none";
     Work.classList.add("active");
@@ -107,17 +116,19 @@ function startTimer() {
     if (!isRunning) {
         isRunning = true;
         timer = setInterval(updateTimer, 1000);
+        startProgress();
         buttonPlay.style.display = "none";
         buttonPause.style.display = "block";
     }
 }
 
 
-
 function pauseTimer() {
     if (isRunning) {
         isRunning = false;
         clearInterval(timer);
+        clearInterval(interval);
+        pauseProgress();
         buttonPlay.style.display = "block";
         buttonPause.style.display = "none";
     }
@@ -133,12 +144,14 @@ function updateTimer() {
         if (isWorkTime) {
             isWorkTime = false;
             currentTime = breakTime;
+            resetElapsedTime();
             Work.classList.remove("active");
             Break.classList.add("active");
             LongBreak.classList.remove("active");
         } else {
             isWorkTime = true;
             currentTime = workTime;
+            resetElapsedTime();
             Work.classList.add("active");
             Break.classList.remove("active");
             LongBreak.classList.remove("active");
@@ -149,6 +162,7 @@ function updateTimer() {
                 isWorkTime = false;
                 isLongBreakTime = true;
                 currentTime = longBreakTime;
+                resetElapsedTime();
                 Work.classList.remove("active");
                 Break.classList.remove("active");
                 LongBreak.classList.add("active");
@@ -158,13 +172,16 @@ function updateTimer() {
     updateDisplay();
 }
 
+
 function updateDisplay() {
     const minutes = Math.floor(currentTime / 60);
     const seconds = currentTime % 60;
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
     updateWindowsDisplay(minutes, seconds);
 }
+
 
 
 function updateWindowsDisplay(minutes, seconds) {
@@ -177,11 +194,53 @@ function resetTimer() {
     clearInterval(timer);
     isRunning = false;
     currentTime = workTime;
+    isWorkTime = true;
+    isLongBreakTime = false;
     updateDisplay();
+    resetProgress();
     buttonPlay.style.display = "block";
     buttonPause.style.display = "none";
     Work.classList.remove("active");
     Break.classList.remove("active");
     LongBreak.classList.remove("active");
+}
 
+
+
+function updateProgressBar(progress) {
+    const progressBar = document.getElementById('progress-bar');
+    progressBar.style.width = `${progress}%`;
+}
+
+
+
+
+function startProgress() {
+    phaseDuration = isWorkTime ? workTime : (isLongBreakTime ? longBreakTime : breakTime);
+    interval = setInterval(() => {
+        if (elapsedTime < phaseDuration) {
+            progress = (elapsedTime / phaseDuration) * 100;
+            updateProgressBar(progress);
+            elapsedTime++;
+        } else {
+            progress = 100;
+            updateProgressBar(progress);
+            clearInterval(interval);
+        }
+    }, 1000);
+}
+
+function resetProgress() {
+    clearInterval(interval);
+    elapsedTime = 0;
+    progress = 0;
+    updateProgressBar(progress);
+}
+
+function resetElapsedTime() {
+    elapsedTime = 0;
+}
+
+function pauseProgress() {
+    clearInterval(interval);
 }

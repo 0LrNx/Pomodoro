@@ -164,7 +164,7 @@
 
 .top-modal {
     display: flex;
-    flex-direction:initial;
+    flex-direction: initial;
     align-items: center;
 }
 
@@ -219,26 +219,16 @@
 
 /* ===== PROGRESS BAR ===== */
 
-.progress-bar-container {
+.cercle-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
 
-.progress-bar {
+.cercle {
     height: 200px;
     width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 2px solid white;
-}
-
-.progress-bar-inner {
-    width: 90%;
-    height: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -301,7 +291,7 @@
     .close {
         font-size: 25px;
         margin-left: 15px;
-    } 
+    }
 }
 
 /* ===== TABLET ===== */
@@ -344,4 +334,24 @@
     .modal-title {
         font-size: 25px;
     }
+}
+
+
+/* ===== ANIMATION ===== */
+
+
+.progress {
+    background-color: purple;
+    display: flex;
+    justify-content: flex-start; /* Aligner le contenu à gauche */
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.determinate {
+    width: 0%;
+    height: 4px;
+    background-color: #26a69a;
 }
