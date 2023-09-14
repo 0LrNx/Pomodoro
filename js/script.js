@@ -115,7 +115,7 @@ timeSettingsForm.addEventListener('submit', function (event) {
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
-        timer = setInterval(updateTimer, 1000);
+        timer = setInterval(updateTimer, 100);
         startProgress();
         buttonPlay.style.display = "none";
         buttonPause.style.display = "block";
@@ -216,18 +216,18 @@ function updateProgressBar(progress) {
 
 
 function startProgress() {
-    phaseDuration = isWorkTime ? workTime : (isLongBreakTime ? longBreakTime : breakTime);
     interval = setInterval(() => {
+        phaseDuration = isWorkTime ? workTime : (isLongBreakTime ? longBreakTime : breakTime);
         if (elapsedTime < phaseDuration) {
             progress = (elapsedTime / phaseDuration) * 100;
             updateProgressBar(progress);
             elapsedTime++;
         } else {
-            progress = 100;
+            progress = 0;
             updateProgressBar(progress);
             clearInterval(interval);
         }
-    }, 1000);
+    }, 100);
 }
 
 function resetProgress() {
