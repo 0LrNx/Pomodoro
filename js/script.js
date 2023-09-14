@@ -207,10 +207,6 @@ function resetTimer() {
 
 
 
-function updateProgressBar(progress) {
-    const progressBar = document.getElementById('progress-bar');
-    progressBar.style.width = `${progress}%`;
-}
 
 
 
@@ -225,7 +221,7 @@ function startProgress() {
         } else {
             progress = 0;
             updateProgressBar(progress);
-            clearInterval(interval);
+            // clearInterval(interval);
         }
     }, 100);
 }
@@ -235,6 +231,12 @@ function resetProgress() {
     elapsedTime = 0;
     progress = 0;
     updateProgressBar(progress);
+}
+
+
+function updateProgressBar(progress) {
+    const progressBar = document.getElementById('progress-bar');
+    progressBar.style.width = `${progress}%`;
 }
 
 function resetElapsedTime() {
