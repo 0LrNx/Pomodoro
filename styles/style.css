@@ -292,6 +292,19 @@
         font-size: 25px;
         margin-left: 15px;
     }
+
+    .text-before-modification {
+        width: 120px;
+    }
+
+    .text-modification {
+        width: 100%;
+    }
+
+    #cyclesLongBreak {
+        width: 80px;
+        font-size: 9px;
+    }
 }
 
 /* ===== TABLET ===== */
