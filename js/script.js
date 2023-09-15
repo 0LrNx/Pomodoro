@@ -34,6 +34,8 @@ let interval;
 let elapsedTime = 0;
 let phaseDuration;
 
+let audio = new Audio('/assets/audio/stars.mp3');
+
 
 window.onload = function () {
     buttonPause.style.display = "none";
@@ -148,6 +150,7 @@ function updateTimer() {
             Work.classList.remove("active");
             Break.classList.add("active");
             LongBreak.classList.remove("active");
+            audio.play();
         } else {
             isWorkTime = true;
             currentTime = workTime;
@@ -157,7 +160,7 @@ function updateTimer() {
             LongBreak.classList.remove("active");
             cpt++;
             cycleNumber.textContent = `cycles #${cpt}`;
-
+            audio.play();
             if (cpt % 4 === 0) {
                 isWorkTime = false;
                 isLongBreakTime = true;
@@ -166,6 +169,7 @@ function updateTimer() {
                 Work.classList.remove("active");
                 Break.classList.remove("active");
                 LongBreak.classList.add("active");
+                audio.play();
             }
         }
     }
@@ -246,3 +250,6 @@ function resetElapsedTime() {
 function pauseProgress() {
     clearInterval(interval);
 }
+
+
+// ===== SOUND ===== //

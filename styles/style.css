@@ -356,7 +356,7 @@
 .progress {
     background-color: purple;
     display: flex;
-    justify-content: flex-start; /* Aligner le contenu à gauche */
+    justify-content: flex-start;
     width: 30%;
     margin-left: auto;
     margin-right: auto;
