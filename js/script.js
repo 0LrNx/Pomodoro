@@ -41,7 +41,6 @@ window.onload = function () {
     buttonPause.style.display = "none";
     Work.classList.add("active");
 
-
     if (localStorage.getItem('workTime')) {
         
         workTime = parseInt(localStorage.getItem('workTime'));
@@ -50,7 +49,8 @@ window.onload = function () {
         isWorkTime = JSON.parse(localStorage.getItem('isWorkTime'));
         isLongBreakTime = JSON.parse(localStorage.getItem('isLongBreakTime'));
         cpt = parseInt(localStorage.getItem('cpt'));
-        if (isWorkTime) {
+        
+        if (!isWorkTime && !isLongBreakTime) {
             currentTime = workTime;
         } else if (isLongBreakTime) {
             currentTime = longBreakTime;
