@@ -40,7 +40,25 @@ let audio = new Audio('/assets/audio/stars.mp3');
 window.onload = function () {
     buttonPause.style.display = "none";
     Work.classList.add("active");
-    updateDisplay();
+
+
+    if (localStorage.getItem('workTime')) {
+        
+        workTime = parseInt(localStorage.getItem('workTime'));
+        breakTime = parseInt(localStorage.getItem('breakTime'));
+        longBreakTime = parseInt(localStorage.getItem('longBreakTime'));
+        isWorkTime = JSON.parse(localStorage.getItem('isWorkTime'));
+        isLongBreakTime = JSON.parse(localStorage.getItem('isLongBreakTime'));
+        cpt = parseInt(localStorage.getItem('cpt'));
+        if (isWorkTime) {
+            currentTime = workTime;
+        } else if (isLongBreakTime) {
+            currentTime = longBreakTime;
+        } else {
+            currentTime = breakTime;
+        }
+        updateDisplay();
+    }
 
     LongBreak.addEventListener('click', function () {
         currentTime = longBreakTime;
@@ -109,6 +127,7 @@ timeSettingsForm.addEventListener('submit', function (event) {
     }
     modal.style.display = "none";
     updateDisplay();
+    updateLocalStorage();
 });
 
 
@@ -184,6 +203,7 @@ function updateDisplay() {
     timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
     updateWindowsDisplay(minutes, seconds);
+    updateLocalStorage();
 }
 
 
@@ -207,6 +227,7 @@ function resetTimer() {
     Work.classList.remove("active");
     Break.classList.remove("active");
     LongBreak.classList.remove("active");
+    updateLocalStorage();
 }
 
 
@@ -252,4 +273,19 @@ function pauseProgress() {
 }
 
 
-// ===== SOUND ===== //
+function updateLocalStorage() {
+    localStorage.setItem('workTime', workTime);
+    localStorage.setItem('breakTime', breakTime);
+    localStorage.setItem('longBreakTime', longBreakTime);
+    localStorage.setItem('isWorkTime', isWorkTime);
+    localStorage.setItem('isLongBreakTime', isLongBreakTime);
+    localStorage.setItem('cpt', cpt);
+}
+
+
+var resetStorageButton = document.getElementById('resetStorage');
+
+resetStorageButton.addEventListener('click', function () {
+    localStorage.clear();
+    location.reload();
+});
