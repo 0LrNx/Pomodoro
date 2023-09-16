@@ -42,7 +42,6 @@ window.onload = function () {
     Work.classList.add("active");
 
     if (localStorage.getItem('workTime')) {
-        
         workTime = parseInt(localStorage.getItem('workTime'));
         breakTime = parseInt(localStorage.getItem('breakTime'));
         longBreakTime = parseInt(localStorage.getItem('longBreakTime'));
@@ -224,7 +223,7 @@ function resetTimer() {
     resetProgress();
     buttonPlay.style.display = "block";
     buttonPause.style.display = "none";
-    Work.classList.remove("active");
+    Work.classList.add("active");
     Break.classList.remove("active");
     LongBreak.classList.remove("active");
     updateLocalStorage();
