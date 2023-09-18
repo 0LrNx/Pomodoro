@@ -12,3 +12,5 @@ Lettres dans le form<br>
 Reset page, le timer reste bloquer sur le break timer<br>
 Pourcentage progress bar<br>
 Animation <br>
+Gérer le cassage du form en JS<br>
+
