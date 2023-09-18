@@ -167,14 +167,17 @@
         transform: translateY(-35%);
         opacity: 0.2;
     }
+
     20% {
         transform: translateY(-30%);
         opacity: 0.4;
     }
+
     30% {
         transform: translateY(-25%);
         opacity: 0.6;
     }
+
     40% {
         transform: translateY(-20%);
         opacity: 0.8;
@@ -262,7 +265,6 @@
 .text-modification:hover {
     background-color: #ff8560;
 }
-
 
 /* ===== PROGRESS BAR ===== */
 
@@ -422,5 +424,104 @@
     width: 0%;
     height: 4px;
     background-color: green;
+}
+
+
+/* ===== TOGGLE BUTTON ===== */
+
+.toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.toggle-text {
+    margin-right: 5px;
+}
+
+.toggle-wrapper {
+    align-items: center;
+    margin-right: 10px;
+}
+
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 30px; 
+    height: 20px;
+    margin-right: 40px;
+}
+
+.toggle-switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: .4s;
+}
+
+.toggle-label:before {
+    content: "";
+    position: absolute;
+    height: 14px;
+    width: 14px; 
+    left: 3px; 
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-label {
+    background-color: rgb(255, 58, 58);
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-label:before {
+    transform: translateX(10px); 
+}
+
+
+
+/* ===== VOLUME ===== */
+.volume-control {
+    display: flex;
+    align-items: center;
+}
+
+#volume-slider {
+    width: 100px; 
+    margin-left: 10px;
+}
+
+.volume-control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.volume-wrapper {
+    align-items: center;
+    margin-right: 10px; 
+}
+
+
+#volume-percentage {
+    margin-left: 5px; 
 }
 

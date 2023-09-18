@@ -89,20 +89,31 @@
                         <input class="text-modification" id="long-break-time" name="long-break-time" placeholder="LongBreak Time">
                         <input class="button-save" type="submit" value="Save">
                     </form>
-                    <button class="resetStorage" id="resetStorage">
-                        Reset all
-                    </button>
+                    <div class="toggle-container">
+                        <div class="toggle-wrapper">
+                            <span class="toggle-text">Disable sound</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="audio-toggle">
+                                <label for="audio-toggle" class="toggle-label"></label>
+                            </div>
+                        </div>
+            
+                        <div class="volume-control">
+                            <div class="volume-wrapper">
+                                <span class="toggle-text">Volume</span>
+                                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+                            </div>
+                            <span id="volume-percentage"></span>
+                        </div>
+                    </div>
+                    <button class="resetStorage" id="resetStorage">Reset all</button>
                 </div>
-
-
             </div>
+            
+
+
         </div>
     </div>
-
-
-
-
-
 
 
 

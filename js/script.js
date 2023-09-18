@@ -3,8 +3,8 @@
 
 let isRunning = false;
 let isWorkTime = true;
-let workTime = 25 * 60;  
-let breakTime = 5 * 60; 
+let workTime = 25 * 60;
+let breakTime = 5 * 60;
 let longBreakTime = 20 * 60;
 let currentTime = workTime;
 
@@ -62,7 +62,7 @@ window.onload = function () {
         isWorkTime = JSON.parse(localStorage.getItem('isWorkTime'));
         isLongBreakTime = JSON.parse(localStorage.getItem('isLongBreakTime'));
         cpt = parseInt(localStorage.getItem('cpt'));
-        
+
         currentTime = workTime;
         // if (!isWorkTime && !isLongBreakTime) {
         //     currentTime = breakTime;
@@ -153,12 +153,12 @@ timeSettingsForm.addEventListener('submit', function (event) {
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
-        isTimerRunning = true; 
-        timer = setInterval(updateTimer, 1000);
+        isTimerRunning = true;
+        timer = setInterval(updateTimer, 100);
         startProgress();
         buttonPlay.style.display = "none";
         buttonPause.style.display = "block";
-        timeSettingsForm.querySelectorAll("input").forEach(function(input) {
+        timeSettingsForm.querySelectorAll("input").forEach(function (input) {
             input.disabled = true;
         });
     }
@@ -175,7 +175,7 @@ function pauseTimer() {
         pauseProgress();
         buttonPlay.style.display = "block";
         buttonPause.style.display = "none";
-        timeSettingsForm.querySelectorAll("input").forEach(function(input) {
+        timeSettingsForm.querySelectorAll("input").forEach(function (input) {
             input.disabled = true;
         });
     }
@@ -236,7 +236,7 @@ function resetTimer() {
 cpt = 0;*/}
     location.reload();
     cycleNumber.textContent = `cycles : #${cpt}`;
-    timeSettingsForm.querySelectorAll("input").forEach(function(input) {
+    timeSettingsForm.querySelectorAll("input").forEach(function (input) {
         input.disabled = false;
     });
 }
@@ -276,7 +276,7 @@ function startProgress() {
             progress = 0;
             updateProgressBar(progress);
         }
-    }, 1000);
+    }, 100);
 }
 
 function resetProgress() {
@@ -321,19 +321,76 @@ resetStorageButton.addEventListener('click', function () {
 });
 
 
-/* ========== ANIMATION ========== */
+/* ========== AUDIO ========== */
 
+var audioToggle = document.getElementById('audio-toggle');
+let volumeSlider = document.getElementById('volume-slider');
+let volumePercentage = document.getElementById('volume-percentage');
+
+volumeSlider.addEventListener('input', function () {
+    let volumeValue = volumeSlider.value * 100;
+    volumePercentage.textContent = volumeValue.toFixed(0) + '%';
+    audio.volume = volumeSlider.value;
+});
+
+audio.volume = volumeSlider.value;
+volumePercentage.textContent = (volumeSlider.value * 100).toFixed(0) + '%';
+
+
+audioToggle.addEventListener('change', function () {
+    if (this.checked) {
+        audio.muted = false;
+    } else {
+        audio.muted = true;
+    }
+});
 
 
 /* ========== FORM VALIDATION ========== */
 
+
 for (let resultat of input) {
-    resultat.addEventListener('input', function() {
-      let valeur = this.value.match(/^\d+$/);
-      if (valeur === null) {
-        this.value = "";
-      } else if (valeur == 0) {
-        this.value = "";
-      }
+    resultat.addEventListener('input', function () {
+        let valeur = this.value.match(/^\d+$/);
+        if (valeur === null) {
+            this.value = "";
+        } else if (valeur == 0) {
+            this.value = "";
+        }
     });
-  }
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Récupérez les éléments des boutons et des contenus
+    var timerSettingsTab = document.getElementById("timer-settings-tab");
+    var soundSettingsTab = document.getElementById("sound-settings-tab");
+    var timerSettingsContent = document.getElementById("timer-settings-content");
+    var soundSettingsContent = document.getElementById("sound-settings-content");
+
+    // Définissez les gestionnaires d'événements pour les boutons
+    timerSettingsTab.addEventListener("click", function () {
+        // Affichez le contenu des paramètres du timer et masquez le contenu des paramètres du son
+        timerSettingsContent.style.display = "block";
+        soundSettingsContent.style.display = "none";
+
+        // Ajoutez ou supprimez la classe "active" pour styliser l'onglet actif
+        timerSettingsTab.classList.add("active");
+        soundSettingsTab.classList.remove("active");
+    });
+
+    soundSettingsTab.addEventListener("click", function () {
+        // Affichez le contenu des paramètres du son et masquez le contenu des paramètres du timer
+        soundSettingsContent.style.display = "block";
+        timerSettingsContent.style.display = "none";
+
+        // Ajoutez ou supprimez la classe "active" pour styliser l'onglet actif
+        soundSettingsTab.classList.add("active");
+        timerSettingsTab.classList.remove("active");
+    });
+
+    // Définissez l'onglet "Timer Settings" comme actif par défaut
+    timerSettingsTab.click();
+});
+
