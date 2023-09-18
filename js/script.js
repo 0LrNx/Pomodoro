@@ -42,6 +42,12 @@ let audio = new Audio('/assets/audio/stars.mp3');
 
 let isTimerRunning = false;
 
+var workTimeForm = document.getElementById('work-time');
+var breakTimeForm = document.getElementById('break-time');
+var longBreakTimeForm = document.getElementById('long-break-time');
+
+const input = [workTimeForm, breakTimeForm, longBreakTimeForm];
+
 
 /* ========== CHARGEMENT DE LA PAGE =========*/
 
@@ -205,7 +211,7 @@ function updateTimer() {
 }
 
 function resetTimer() {
-    clearInterval(timer);
+    {/*clearInterval(timer);
     isRunning = false;
     isTimerRunning = false;
     currentTime = workTime;
@@ -219,7 +225,8 @@ function resetTimer() {
     Break.classList.remove("active");
     LongBreak.classList.remove("active");
     updateLocalStorage();
-    cpt = 0;
+cpt = 0;*/}
+    location.reload();
     cycleNumber.textContent = `cycles : #${cpt}`;
     timeSettingsForm.querySelectorAll("input").forEach(function(input) {
         input.disabled = false;
@@ -308,13 +315,17 @@ resetStorageButton.addEventListener('click', function () {
 
 /* ========== ANIMATION ========== */
 
-document.getElementById("modal").animate(
-    [
-      { transform: "translateY(0px)" },
-      { transform: "translateY(-300px)" },
-    ],
-    {
-      duration: 1000,
-      iterations: Infinity,
-    },
-  );
+
+
+/* ========== FORM VALIDATION ========== */
+
+for (let resultat of input) {
+    resultat.addEventListener('input', function() {
+      let valeur = this.value.match(/^\d+$/);
+      if (valeur === null) {
+        this.value = "";
+      } else if (valeur == 0) {
+        this.value = "";
+      }
+    });
+  }
