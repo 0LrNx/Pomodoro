@@ -63,15 +63,17 @@ window.onload = function () {
         isLongBreakTime = JSON.parse(localStorage.getItem('isLongBreakTime'));
         cpt = parseInt(localStorage.getItem('cpt'));
         
-        if (!isWorkTime && !isLongBreakTime) {
-            currentTime = workTime;
-        } else if (isLongBreakTime) {
-            currentTime = longBreakTime;
-        } else {
-            currentTime = breakTime;
-        }
+        currentTime = workTime;
+        // if (!isWorkTime && !isLongBreakTime) {
+        //     currentTime = breakTime;
+        // } else if (isLongBreakTime) {
+        //     currentTime = longBreakTime;
+        // } else {
+        //     currentTime = workTime;
+        // }
         updateDisplay();
     }
+
 
     LongBreak.addEventListener('click', function () {
         currentTime = longBreakTime;
@@ -117,10 +119,12 @@ btnSettings.onclick = function () {
     document.getElementById('break-time').value = breakTime / 60;
     document.getElementById('long-break-time').value = longBreakTime / 60;
     modal.style.display = "block";
+    modal.classList.add("show");
 }
 
 closeCross.onclick = function () {
     modal.style.display = "none";
+    modal.classList.remove("show");
 }
 
 timeSettingsForm.addEventListener('submit', function (event) {
@@ -129,12 +133,16 @@ timeSettingsForm.addEventListener('submit', function (event) {
         workTime = parseInt(document.getElementById('work-time').value) * 60;
         breakTime = parseInt(document.getElementById('break-time').value) * 60;
         longBreakTime = parseInt(document.getElementById('long-break-time').value) * 60;
+        modal.style.display = "none";
+
         if (isWorkTime) {
             currentTime = workTime;
+        } else if (isLongBreakTime) {
+            currentTime = longBreakTime;
         } else {
             currentTime = breakTime;
         }
-        modal.style.display = "none";
+
         updateDisplay();
         updateLocalStorage();
     }
