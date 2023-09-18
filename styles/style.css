@@ -12,9 +12,8 @@
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 40px;
 }
-
-
 
 /* ===== BUTTON ===== */
 
@@ -69,16 +68,12 @@
 #btn-pause,
 .button-save {
     color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: white;
     border-radius: 500px;
     width: 100px;
     height: 30px;
     cursor: pointer;
     border: white;
-    align-items: center;
 }
 
 #btn-play:hover,
@@ -96,8 +91,27 @@
     cursor: pointer;
 }
 
-.button-save {
-    margin-top: 20px;
+.resetStorage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border: none;
+    color: black;
+    background-color: rgb(255, 58, 58);
+    border-radius: 500px;
+    padding: 0 22px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.resetStorage:hover {
+    border: none;
+    color: black;
+    background-color: transparent;
+    border: 1px solid black;
 }
 
 .btn-reset,
@@ -145,6 +159,7 @@
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.7);
+
 }
 
 .modal-content {
@@ -213,7 +228,7 @@
 }
 
 .text-modification:hover {
-    background-color: #ff5722;
+    background-color: #ff8560;
 }
 
 
@@ -265,7 +280,7 @@
 @media screen and (max-width: 768px) {
 
     * {
-        background-color: yellowgreen;
+        background-color: rgb(224, 102, 102);
     }
 
 
@@ -301,10 +316,16 @@
         width: 100%;
     }
 
+    .determinate {
+        display: none;
+    }
+
     #cyclesLongBreak {
         width: 80px;
         font-size: 9px;
     }
+
+
 }
 
 /* ===== TABLET ===== */
@@ -313,7 +334,7 @@
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 
     * {
-        background-color: green;
+        background-color: rgb(224, 102, 102);
     }
 
     .phases {
@@ -333,6 +354,8 @@
         color: #333;
         margin-bottom: 10px;
     }
+
+
 }
 
 /* ===== DESKTOP ===== */
@@ -354,7 +377,7 @@
 
 
 .progress {
-    background-color: purple;
+    background-color: white;
     display: flex;
     justify-content: flex-start;
     width: 30%;
@@ -366,5 +389,6 @@
 .determinate {
     width: 0%;
     height: 4px;
-    background-color: #26a69a;
+    background-color: green;
 }
+

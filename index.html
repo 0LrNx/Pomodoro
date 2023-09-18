@@ -22,83 +22,87 @@
 </head>
 
 <body>
-    <header>
-        <h1 class="title-page">POMODORO TIMER</h1>
-    </header>
+    <div class="container-general">
+        <header>
+            <h1 class="title-page">POMODORO TIMER</h1>
+        </header>
 
 
-    <div class="progress">
-        <div class="determinate" id="progress-bar"></div>
-    </div>
 
-
-    <div class="phases">
-        <p id="cyclesWork">Work</p>
-        <p id="cyclesBreak">Break</p>
-        <p id="cyclesLongBreak">Long Break</p>
-    </div>
-
-    <div class="cercle-container">
-        <div class="cercle">
-            <h2 class="timer-pomodoro" id="timer">25:00</h2>
+        <div class="progress">
+            <div class="determinate" id="progress-bar"></div>
         </div>
-    </div>
 
 
-    <div class="number-container">
-        <h3 id="cyclesNumber">cycles : #0</h3>
-    </div>
+        <div class="phases">
+            <p id="cyclesWork">Work</p>
+            <p id="cyclesBreak">Break</p>
+            <p id="cyclesLongBreak">Long Break</p>
+        </div>
 
-    <div class="bouton-container">
-
-
-        <button id="btn-play">
-            start
-        </button>
-
-        <button class="hide" id="btn-pause">
-            pause
-        </button>
-
-        <button type="submit" class="btn-reset" id="btn-reset">
-            <!-- <h4 class="hide">text</h4> -->
-            <em class="fa-solid fa-rotate-right"></em>
-        </button>
-
-
-
-
-
-        <button class="btn-settings" id="btn-settings">
-            <!-- <h4 class="hide" >text</h4> -->
-            <em class="fa-solid fa-gear"></em>
-        </button>
-
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <div class="top-modal">
-                    <h1 class="modal-title">Time parameters</h1>
-                    <em class="fa-solid fa-xmark close"></em>
-                </div>
-                <form id="time-settings">
-                    <label class="text-before-modification" for="work-time">Working time :</label>
-                    <input class="text-modification" type="number" id="work-time" name="work-time" min="1">
-                    <label class="text-before-modification" for="break-time">Break time :</label>
-                    <input class="text-modification" type="number" id="break-time" name="break-time" min="1">
-                    <label class="text-before-modification" for="long-break-time">Long Break time
-                        :</label>
-                    <input class="text-modification" type="number" id="long-break-time" name="long-break-time" min="1">
-                    <input class="button-save" type="submit" value="Save">
-                </form>
+        <div class="cercle-container">
+            <div class="cercle">
+                <h2 class="timer-pomodoro" id="timer">25:00</h2>
             </div>
-            <button id="resetStorage">
-                Reset Storage
+        </div>
+
+
+        <div class="number-container">
+            <h3 id="cyclesNumber">cycles : #0</h3>
+        </div>
+
+        <div class="bouton-container">
+
+
+            <button id="btn-play">
+                start
             </button>
+
+            <button class="hide" id="btn-pause">
+                pause
+            </button>
+
+            <button aria-label="Reset" type="submit" class="btn-reset" id="btn-reset">
+                <em class="fa-solid fa-rotate-right"></em>
+            </button>
+
+
+
+
+
+            <button aria-label="Settings" class="btn-settings" id="btn-settings">
+                <em class="fa-solid fa-gear"></em>
+            </button>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="top-modal">
+                        <h1 class="modal-title">Time parameters</h1>
+                        <em class="fa-solid fa-xmark close"></em>
+                    </div>
+                    <form id="time-settings">
+                        <label class="text-before-modification" for="work-time">Working time :</label>
+                        <input class="text-modification" type="number" id="work-time" name="work-time" min="1" step="1">
+                        <label class="text-before-modification" for="break-time">Break time :</label>
+                        <input class="text-modification" type="number" id="break-time" name="break-time" min="1"
+                            step="1">
+                        <label class="text-before-modification" for="long-break-time">Long Break time :</label>
+                        <input class="text-modification" type="number" id="long-break-time" name="long-break-time"
+                            min="1" step="1">
+                        <input class="button-save" type="submit" value="Save">
+                    </form>
+                    <button class="resetStorage" id="resetStorage">
+                        Reset all
+                    </button>
+                </div>
+
+
+            </div>
         </div>
     </div>
 
 
-    
+
 
 
 

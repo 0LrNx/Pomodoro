@@ -1,8 +1,11 @@
+
+/* ========== INITIALISATION =========*/
+
 let isRunning = false;
 let isWorkTime = true;
-let workTime = 25 * 60;  // 25 minutes en secondes
-let breakTime = 5 * 60;  // 5 minutes en secondes
-let longBreakTime = 20 * 60;  // 15 minutes en secondes
+let workTime = 25 * 60;  
+let breakTime = 5 * 60; 
+let longBreakTime = 20 * 60;
 let currentTime = workTime;
 
 
@@ -22,8 +25,8 @@ var cycleNumber = document.getElementById('cyclesNumber');
 var timeSettingsForm = document.getElementById('time-settings');
 
 var modal = document.getElementById("myModal");
-var btn = document.getElementById("btn-settings");
-var span = document.getElementsByClassName("close")[0];
+var btnSettings = document.getElementById("btn-settings");
+var closeCross = document.getElementsByClassName("close")[0];
 
 
 
@@ -36,6 +39,7 @@ let phaseDuration;
 
 let audio = new Audio('/assets/audio/stars.mp3');
 
+/* ========== CHARGEMENT DE LA PAGE =========*/
 
 window.onload = function () {
     buttonPause.style.display = "none";
@@ -90,30 +94,24 @@ window.onload = function () {
     });
 }
 
+/* ========== BUTTON LISTENER  =========*/
+
 buttonPlay.addEventListener('click', startTimer);
 buttonPause.addEventListener('click', pauseTimer);
 buttonReset.addEventListener('click', resetTimer);
 
+/* ========== WINDOW MODAL  =========*/
 
-btn.onclick = function () {
+btnSettings.onclick = function () {
     document.getElementById('work-time').value = workTime / 60;
     document.getElementById('break-time').value = breakTime / 60;
     document.getElementById('long-break-time').value = longBreakTime / 60;
     modal.style.display = "block";
 }
 
-span.onclick = function () {
+closeCross.onclick = function () {
     modal.style.display = "none";
 }
-
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-
-
 timeSettingsForm.addEventListener('submit', function (event) {
     event.preventDefault();
     workTime = parseInt(document.getElementById('work-time').value) * 60;
@@ -129,13 +127,12 @@ timeSettingsForm.addEventListener('submit', function (event) {
     updateLocalStorage();
 });
 
-
-
+/* ========== TIMER GESTION =========*/
 
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
-        timer = setInterval(updateTimer, 100);
+        timer = setInterval(updateTimer, 1000);
         startProgress();
         buttonPlay.style.display = "none";
         buttonPause.style.display = "block";
@@ -153,9 +150,6 @@ function pauseTimer() {
         buttonPause.style.display = "none";
     }
 }
-
-
-
 
 
 function updateTimer() {
@@ -177,7 +171,7 @@ function updateTimer() {
             Break.classList.remove("active");
             LongBreak.classList.remove("active");
             cpt++;
-            cycleNumber.textContent = `cycles #${cpt}`;
+            cycleNumber.textContent = `cycles : #${cpt}`;
             audio.play();
             if (cpt % 4 === 0) {
                 isWorkTime = false;
@@ -194,25 +188,6 @@ function updateTimer() {
     updateDisplay();
 }
 
-
-function updateDisplay() {
-    const minutes = Math.floor(currentTime / 60);
-    const seconds = currentTime % 60;
-    const timerDisplay = document.getElementById('timer');
-    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-    updateWindowsDisplay(minutes, seconds);
-    updateLocalStorage();
-}
-
-
-
-function updateWindowsDisplay(minutes, seconds) {
-    let phaseName = isLongBreakTime ? 'LongBreak' : (isWorkTime ? 'Work' : 'Break');
-    document.title = `POMODORO-${phaseName} : ${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}`;
-}
-
-
 function resetTimer() {
     clearInterval(timer);
     isRunning = false;
@@ -227,13 +202,34 @@ function resetTimer() {
     Break.classList.remove("active");
     LongBreak.classList.remove("active");
     updateLocalStorage();
+    cpt = 0;
+    cycleNumber.textContent = `cycles : #${cpt}`;
 }
 
 
+/* ========== DISPLAY TIMER GESTION =========*/
+
+function updateDisplay() {
+    const minutes = Math.floor(currentTime / 60);
+    const seconds = currentTime % 60;
+    const timerDisplay = document.getElementById('timer');
+    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+    updateWindowsDisplay(minutes, seconds);
+    updateLocalStorage();
+}
+
+/* ========== DISPLAY TIMER & CYCLES IN WINDOWS =========*/
+
+function updateWindowsDisplay(minutes, seconds) {
+    let phaseName = isLongBreakTime ? 'LongBreak' : (isWorkTime ? 'Work' : 'Break');
+    document.title = `POMODORO-${phaseName} : ${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}`;
+}
 
 
+/* ========== PROGRESS BAR =========*/
 
-
+let progressBarDisplay = document.getElementById('progress-bar-display');
 
 function startProgress() {
     interval = setInterval(() => {
@@ -245,9 +241,8 @@ function startProgress() {
         } else {
             progress = 0;
             updateProgressBar(progress);
-            // clearInterval(interval);
         }
-    }, 100);
+    }, 1000);
 }
 
 function resetProgress() {
@@ -272,6 +267,8 @@ function pauseProgress() {
 }
 
 
+/* ========== LOCAL STORAGE =========*/
+
 function updateLocalStorage() {
     localStorage.setItem('workTime', workTime);
     localStorage.setItem('breakTime', breakTime);
@@ -288,3 +285,17 @@ resetStorageButton.addEventListener('click', function () {
     localStorage.clear();
     location.reload();
 });
+
+
+/* ========== ANIMATION ========== */
+
+document.getElementById("modal").animate(
+    [
+      { transform: "translateY(0px)" },
+      { transform: "translateY(-300px)" },
+    ],
+    {
+      duration: 1000,
+      iterations: Infinity,
+    },
+  );
