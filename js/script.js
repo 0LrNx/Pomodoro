@@ -1,3 +1,7 @@
+/**
+ * Initialize variables and set up event listeners when the window loads.
+ */
+
 let isRunning = false,
     isWorkTime = true,
     workTime = 25 * 60,
@@ -31,9 +35,11 @@ let isRunning = false,
     input = [workTimeForm, breakTimeForm, longBreakTimeForm];
 
 window.onload = function () {
+    // Hide the pause button initially and mark the "Work" element as active.
     buttonPause.style.display = "none";
     Work.classList.add("active");
 
+    // Check if settings are saved in local storage and update variables accordingly.
     if (localStorage.getItem('workTime')) {
         workTime = parseInt(localStorage.getItem('workTime'));
         breakTime = parseInt(localStorage.getItem('breakTime'));
@@ -43,6 +49,7 @@ window.onload = function () {
         updateDisplay();
     }
 
+    // Event listener for clicking on the "Long Break" button.
     LongBreak.addEventListener('click', function () {
         currentTime = longBreakTime;
         isWorkTime = false;
@@ -53,6 +60,7 @@ window.onload = function () {
         Break.classList.remove("active");
     });
 
+    // Event listener for clicking on the "Work" button.
     Work.addEventListener('click', function () {
         currentTime = workTime;
         isWorkTime = true;
@@ -63,6 +71,7 @@ window.onload = function () {
         LongBreak.classList.remove("active");
     });
 
+    // Event listener for clicking on the "Break" button.
     Break.addEventListener('click', function () {
         currentTime = breakTime;
         isWorkTime = false;
@@ -74,10 +83,13 @@ window.onload = function () {
     });
 }
 
+
+// Event listeners for various buttons.
 buttonPlay.addEventListener('click', startTimer);
 buttonPause.addEventListener('click', pauseTimer);
 buttonReset.addEventListener('click', resetTimer);
 
+// Event listener for the settings button.
 btnSettings.onclick = function () {
     document.getElementById('work-time').value = workTime / 60;
     document.getElementById('break-time').value = breakTime / 60;
@@ -86,11 +98,13 @@ btnSettings.onclick = function () {
     modal.classList.add("show");
 }
 
+// Event listener for the close button in the settings modal.
 closeCross.onclick = function () {
     modal.style.display = "none";
     modal.classList.remove("show");
 }
 
+// Event listener for the time settings form submission.
 timeSettingsForm.addEventListener('submit', function (event) {
     event.preventDefault();
     if (!isTimerRunning) {
@@ -99,6 +113,7 @@ timeSettingsForm.addEventListener('submit', function (event) {
         longBreakTime = parseInt(document.getElementById('long-break-time').value) * 60;
         modal.style.display = "none";
 
+        // Set the current time based on the active phase (Work, Break, or Long Break).
         if (isWorkTime) {
             currentTime = workTime;
         } else if (isLongBreakTime) {
@@ -112,6 +127,9 @@ timeSettingsForm.addEventListener('submit', function (event) {
     }
 });
 
+/**
+ * Start the timer when the "Play" button is clicked.
+ */
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
@@ -126,6 +144,9 @@ function startTimer() {
     }
 }
 
+/**
+ * Pause the timer when the "Pause" button is clicked.
+ */
 function pauseTimer() {
     if (isRunning) {
         isRunning = false;
@@ -141,6 +162,9 @@ function pauseTimer() {
     }
 }
 
+/**
+ * Update the timer's countdown display.
+ */
 function updateTimer() {
     currentTime--;
     if (currentTime < 0) {
@@ -177,6 +201,9 @@ function updateTimer() {
     updateDisplay();
 }
 
+/**
+ * Reset the timer when the "Reset" button is clicked.
+ */
 function resetTimer() {
     localStorage.removeItem('cpt');
     location.reload();
@@ -185,6 +212,9 @@ function resetTimer() {
     });
 }
 
+/**
+ * Update the display of the timer (minutes and seconds).
+ */
 function updateDisplay() {
     const minutes = Math.floor(currentTime / 60);
     const seconds = currentTime % 60;
@@ -195,13 +225,20 @@ function updateDisplay() {
     updateLocalStorage();
 }
 
+/**
+ * Update the title of the window to reflect the current phase.
+ */
 function updateWindowsDisplay(minutes, seconds) {
     let phaseName = isLongBreakTime ? 'Long Break' : (isWorkTime ? 'Work' : 'Break');
     document.title = `POMODORO-${phaseName} : ${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}`;
 }
 
+// Initialize and start the progress bar.
 let progressBarDisplay = document.getElementById('progress-bar-display');
 
+/**
+ * Start the progress bar animation.
+ */
 function startProgress() {
     interval = setInterval(() => {
         phaseDuration = isWorkTime ? workTime : (isLongBreakTime ? longBreakTime : breakTime);
@@ -216,6 +253,10 @@ function startProgress() {
     }, 100);
 }
 
+
+/**
+ * Reset the progress bar.
+ */
 function resetProgress() {
     clearInterval(interval);
     elapsedTime = 0;
@@ -223,19 +264,31 @@ function resetProgress() {
     updateProgressBar(progress);
 }
 
+/**
+ * Update the progress bar's width.
+ */
 function updateProgressBar(progress) {
     const progressBar = document.querySelector('.determinate');
     progressBar.style.width = `${progress}%`;
 }
 
+/**
+ * Reset the elapsed time.
+ */
 function resetElapsedTime() {
     elapsedTime = 0;
 }
 
+/**
+ * Pause the progress bar animation.
+ */
 function pauseProgress() {
     clearInterval(interval);
 }
 
+/**
+ * Update local storage with timer settings and state.
+ */
 function updateLocalStorage() {
     localStorage.setItem('workTime', workTime);
     localStorage.setItem('breakTime', breakTime);
@@ -245,26 +298,32 @@ function updateLocalStorage() {
     localStorage.setItem('cpt', cpt);
 }
 
+// Event listener to reset local storage data.
 var resetStorageButton = document.getElementById('resetStorage');
-
 resetStorageButton.addEventListener('click', function () {
     localStorage.clear();
     location.reload();
 });
 
+// Event listeners for audio settings.
 var audioToggle = document.getElementById('audio-toggle');
 let volumeSlider = document.getElementById('volume-slider');
 let volumePercentage = document.getElementById('volume-percentage');
 
+// Update audio volume based on the slider.
 volumeSlider.addEventListener('input', function () {
     let volumeValue = volumeSlider.value * 100;
     volumePercentage.textContent = volumeValue.toFixed(0) + '%';
     audio.volume = volumeSlider.value;
 });
 
+
+// Initialize audio volume and update the display.
 audio.volume = volumeSlider.value;
 volumePercentage.textContent = (volumeSlider.value * 100).toFixed(0) + '%';
 
+
+// Event listener to toggle audio mute.
 audioToggle.addEventListener('change', function () {
     if (this.checked) {
         audio.muted = true;
@@ -274,6 +333,7 @@ audioToggle.addEventListener('change', function () {
 });
 
 
+// Event listeners to validate input fields in the settings modal.
 for (let resultat of input) {
     resultat.addEventListener('input', function () {
         let valeur = this.value.match(/^\d+$/);
