@@ -23,6 +23,7 @@ var LongBreak = document.getElementById('cyclesLongBreak');
 var cycleNumber = document.getElementById('cyclesNumber');
 
 var timeSettingsForm = document.getElementById('time-settings');
+var textModification = document.getElementById('text-modification');
 
 var modal = document.getElementById("myModal");
 var btnSettings = document.getElementById("btn-settings");
@@ -38,6 +39,9 @@ let elapsedTime = 0;
 let phaseDuration;
 
 let audio = new Audio('/assets/audio/stars.mp3');
+
+let isTimerRunning = false;
+
 
 /* ========== CHARGEMENT DE LA PAGE =========*/
 
@@ -112,19 +116,22 @@ btnSettings.onclick = function () {
 closeCross.onclick = function () {
     modal.style.display = "none";
 }
+
 timeSettingsForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    workTime = parseInt(document.getElementById('work-time').value) * 60;
-    breakTime = parseInt(document.getElementById('break-time').value) * 60;
-    longBreakTime = parseInt(document.getElementById('long-break-time').value) * 60;
-    if (isWorkTime) {
-        currentTime = workTime;
-    } else {
-        currentTime = breakTime;
+    if (!isTimerRunning) {
+        workTime = parseInt(document.getElementById('work-time').value) * 60;
+        breakTime = parseInt(document.getElementById('break-time').value) * 60;
+        longBreakTime = parseInt(document.getElementById('long-break-time').value) * 60;
+        if (isWorkTime) {
+            currentTime = workTime;
+        } else {
+            currentTime = breakTime;
+        }
+        modal.style.display = "none";
+        updateDisplay();
+        updateLocalStorage();
     }
-    modal.style.display = "none";
-    updateDisplay();
-    updateLocalStorage();
 });
 
 /* ========== TIMER GESTION =========*/
@@ -132,22 +139,31 @@ timeSettingsForm.addEventListener('submit', function (event) {
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
+        isTimerRunning = true; 
         timer = setInterval(updateTimer, 1000);
         startProgress();
         buttonPlay.style.display = "none";
         buttonPause.style.display = "block";
+        timeSettingsForm.querySelectorAll("input").forEach(function(input) {
+            input.disabled = true;
+        });
     }
 }
+
 
 
 function pauseTimer() {
     if (isRunning) {
         isRunning = false;
+        isTimerRunning = false;
         clearInterval(timer);
         clearInterval(interval);
         pauseProgress();
         buttonPlay.style.display = "block";
         buttonPause.style.display = "none";
+        timeSettingsForm.querySelectorAll("input").forEach(function(input) {
+            input.disabled = true;
+        });
     }
 }
 
@@ -191,6 +207,7 @@ function updateTimer() {
 function resetTimer() {
     clearInterval(timer);
     isRunning = false;
+    isTimerRunning = false;
     currentTime = workTime;
     isWorkTime = true;
     isLongBreakTime = false;
@@ -204,8 +221,10 @@ function resetTimer() {
     updateLocalStorage();
     cpt = 0;
     cycleNumber.textContent = `cycles : #${cpt}`;
+    timeSettingsForm.querySelectorAll("input").forEach(function(input) {
+        input.disabled = false;
+    });
 }
-
 
 /* ========== DISPLAY TIMER GESTION =========*/
 
