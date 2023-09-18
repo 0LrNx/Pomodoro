@@ -1,55 +1,34 @@
-
-/* ========== INITIALISATION =========*/
-
-let isRunning = false;
-let isWorkTime = true;
-let workTime = 25 * 60;
-let breakTime = 5 * 60;
-let longBreakTime = 20 * 60;
-let currentTime = workTime;
-
-
-let cpt = 0;
-let completedCycles = 0;
-let isLongBreakTime = false;
-
-var buttonPlay = document.getElementById('btn-play');
-var buttonPause = document.getElementById('btn-pause');
-var buttonReset = document.getElementById('btn-reset');
-
-var Work = document.getElementById('cyclesWork');
-var Break = document.getElementById('cyclesBreak');
-var LongBreak = document.getElementById('cyclesLongBreak');
-var cycleNumber = document.getElementById('cyclesNumber');
-
-var timeSettingsForm = document.getElementById('time-settings');
-var textModification = document.getElementById('text-modification');
-
-var modal = document.getElementById("myModal");
-var btnSettings = document.getElementById("btn-settings");
-var closeCross = document.getElementsByClassName("close")[0];
-
-
-
-let progress = 0;
-let interval;
-
-
-let elapsedTime = 0;
-let phaseDuration;
-
-let audio = new Audio('/assets/audio/stars.mp3');
-
-let isTimerRunning = false;
-
-var workTimeForm = document.getElementById('work-time');
-var breakTimeForm = document.getElementById('break-time');
-var longBreakTimeForm = document.getElementById('long-break-time');
-
-const input = [workTimeForm, breakTimeForm, longBreakTimeForm];
-
-
-/* ========== CHARGEMENT DE LA PAGE =========*/
+let isRunning = false,
+    isWorkTime = true,
+    workTime = 25 * 60,
+    breakTime = 5 * 60,
+    longBreakTime = 20 * 60,
+    currentTime = workTime,
+    cpt = 0,
+    completedCycles = 0,
+    isLongBreakTime = false,
+    buttonPlay = document.getElementById('btn-play'),
+    buttonPause = document.getElementById('btn-pause'),
+    buttonReset = document.getElementById('btn-reset'),
+    Work = document.getElementById('cyclesWork'),
+    Break = document.getElementById('cyclesBreak'),
+    LongBreak = document.getElementById('cyclesLongBreak'),
+    cycleNumber = document.getElementById('cyclesNumber'),
+    timeSettingsForm = document.getElementById('time-settings'),
+    textModification = document.getElementById('text-modification'),
+    modal = document.getElementById("myModal"),
+    btnSettings = document.getElementById("btn-settings"),
+    closeCross = document.getElementsByClassName("close")[0],
+    progress = 0,
+    interval,
+    elapsedTime = 0,
+    phaseDuration,
+    audio = new Audio('/assets/audio/stars.mp3'),
+    isTimerRunning = false,
+    workTimeForm = document.getElementById('work-time'),
+    breakTimeForm = document.getElementById('break-time'),
+    longBreakTimeForm = document.getElementById('long-break-time'),
+    input = [workTimeForm, breakTimeForm, longBreakTimeForm];
 
 window.onload = function () {
     buttonPause.style.display = "none";
@@ -59,21 +38,10 @@ window.onload = function () {
         workTime = parseInt(localStorage.getItem('workTime'));
         breakTime = parseInt(localStorage.getItem('breakTime'));
         longBreakTime = parseInt(localStorage.getItem('longBreakTime'));
-        isWorkTime = JSON.parse(localStorage.getItem('isWorkTime'));
-        isLongBreakTime = JSON.parse(localStorage.getItem('isLongBreakTime'));
         cpt = parseInt(localStorage.getItem('cpt'));
-
         currentTime = workTime;
-        // if (!isWorkTime && !isLongBreakTime) {
-        //     currentTime = breakTime;
-        // } else if (isLongBreakTime) {
-        //     currentTime = longBreakTime;
-        // } else {
-        //     currentTime = workTime;
-        // }
         updateDisplay();
     }
-
 
     LongBreak.addEventListener('click', function () {
         currentTime = longBreakTime;
@@ -106,13 +74,9 @@ window.onload = function () {
     });
 }
 
-/* ========== BUTTON LISTENER  =========*/
-
 buttonPlay.addEventListener('click', startTimer);
 buttonPause.addEventListener('click', pauseTimer);
 buttonReset.addEventListener('click', resetTimer);
-
-/* ========== WINDOW MODAL  =========*/
 
 btnSettings.onclick = function () {
     document.getElementById('work-time').value = workTime / 60;
@@ -148,8 +112,6 @@ timeSettingsForm.addEventListener('submit', function (event) {
     }
 });
 
-/* ========== TIMER GESTION =========*/
-
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
@@ -163,8 +125,6 @@ function startTimer() {
         });
     }
 }
-
-
 
 function pauseTimer() {
     if (isRunning) {
@@ -180,7 +140,6 @@ function pauseTimer() {
         });
     }
 }
-
 
 function updateTimer() {
     currentTime--;
@@ -200,8 +159,8 @@ function updateTimer() {
             Work.classList.add("active");
             Break.classList.remove("active");
             LongBreak.classList.remove("active");
-            cpt++;
             cycleNumber.textContent = `cycles : #${cpt}`;
+            cpt++;
             audio.play();
             if (cpt % 4 === 0) {
                 isWorkTime = false;
@@ -219,14 +178,12 @@ function updateTimer() {
 }
 
 function resetTimer() {
+    localStorage.removeItem('cpt');
     location.reload();
-    cycleNumber.textContent = `cycles : #${cpt}`;
     timeSettingsForm.querySelectorAll("input").forEach(function (input) {
         input.disabled = false;
     });
 }
-
-/* ========== DISPLAY TIMER GESTION =========*/
 
 function updateDisplay() {
     const minutes = Math.floor(currentTime / 60);
@@ -238,15 +195,10 @@ function updateDisplay() {
     updateLocalStorage();
 }
 
-/* ========== DISPLAY TIMER & CYCLES IN WINDOWS =========*/
-
 function updateWindowsDisplay(minutes, seconds) {
-    let phaseName = isLongBreakTime ? 'LongBreak' : (isWorkTime ? 'Work' : 'Break');
+    let phaseName = isLongBreakTime ? 'Long Break' : (isWorkTime ? 'Work' : 'Break');
     document.title = `POMODORO-${phaseName} : ${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}`;
 }
-
-
-/* ========== PROGRESS BAR =========*/
 
 let progressBarDisplay = document.getElementById('progress-bar-display');
 
@@ -271,12 +223,10 @@ function resetProgress() {
     updateProgressBar(progress);
 }
 
-
 function updateProgressBar(progress) {
     const progressBar = document.querySelector('.determinate');
     progressBar.style.width = `${progress}%`;
 }
-
 
 function resetElapsedTime() {
     elapsedTime = 0;
@@ -285,9 +235,6 @@ function resetElapsedTime() {
 function pauseProgress() {
     clearInterval(interval);
 }
-
-
-/* ========== LOCAL STORAGE =========*/
 
 function updateLocalStorage() {
     localStorage.setItem('workTime', workTime);
@@ -298,16 +245,12 @@ function updateLocalStorage() {
     localStorage.setItem('cpt', cpt);
 }
 
-
 var resetStorageButton = document.getElementById('resetStorage');
 
 resetStorageButton.addEventListener('click', function () {
     localStorage.clear();
     location.reload();
 });
-
-
-/* ========== VOLUME & AUDIO ========== */
 
 var audioToggle = document.getElementById('audio-toggle');
 let volumeSlider = document.getElementById('volume-slider');
@@ -322,7 +265,6 @@ volumeSlider.addEventListener('input', function () {
 audio.volume = volumeSlider.value;
 volumePercentage.textContent = (volumeSlider.value * 100).toFixed(0) + '%';
 
-
 audioToggle.addEventListener('change', function () {
     if (this.checked) {
         audio.muted = true;
@@ -330,9 +272,6 @@ audioToggle.addEventListener('change', function () {
         audio.muted = false;
     }
 });
-
-
-/* ========== FORM VALIDATION ========== */
 
 
 for (let resultat of input) {
