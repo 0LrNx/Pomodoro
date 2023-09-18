@@ -219,21 +219,6 @@ function updateTimer() {
 }
 
 function resetTimer() {
-    {/*clearInterval(timer);
-    isRunning = false;
-    isTimerRunning = false;
-    currentTime = workTime;
-    isWorkTime = true;
-    isLongBreakTime = false;
-    updateDisplay();
-    resetProgress();
-    buttonPlay.style.display = "block";
-    buttonPause.style.display = "none";
-    Work.classList.add("active");
-    Break.classList.remove("active");
-    LongBreak.classList.remove("active");
-    updateLocalStorage();
-cpt = 0;*/}
     location.reload();
     cycleNumber.textContent = `cycles : #${cpt}`;
     timeSettingsForm.querySelectorAll("input").forEach(function (input) {
@@ -288,9 +273,10 @@ function resetProgress() {
 
 
 function updateProgressBar(progress) {
-    const progressBar = document.getElementById('progress-bar');
+    const progressBar = document.querySelector('.determinate');
     progressBar.style.width = `${progress}%`;
 }
+
 
 function resetElapsedTime() {
     elapsedTime = 0;
@@ -321,7 +307,7 @@ resetStorageButton.addEventListener('click', function () {
 });
 
 
-/* ========== AUDIO ========== */
+/* ========== VOLUME & AUDIO ========== */
 
 var audioToggle = document.getElementById('audio-toggle');
 let volumeSlider = document.getElementById('volume-slider');
@@ -339,9 +325,9 @@ volumePercentage.textContent = (volumeSlider.value * 100).toFixed(0) + '%';
 
 audioToggle.addEventListener('change', function () {
     if (this.checked) {
-        audio.muted = false;
-    } else {
         audio.muted = true;
+    } else {
+        audio.muted = false;
     }
 });
 
@@ -359,38 +345,3 @@ for (let resultat of input) {
         }
     });
 }
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Récupérez les éléments des boutons et des contenus
-    var timerSettingsTab = document.getElementById("timer-settings-tab");
-    var soundSettingsTab = document.getElementById("sound-settings-tab");
-    var timerSettingsContent = document.getElementById("timer-settings-content");
-    var soundSettingsContent = document.getElementById("sound-settings-content");
-
-    // Définissez les gestionnaires d'événements pour les boutons
-    timerSettingsTab.addEventListener("click", function () {
-        // Affichez le contenu des paramètres du timer et masquez le contenu des paramètres du son
-        timerSettingsContent.style.display = "block";
-        soundSettingsContent.style.display = "none";
-
-        // Ajoutez ou supprimez la classe "active" pour styliser l'onglet actif
-        timerSettingsTab.classList.add("active");
-        soundSettingsTab.classList.remove("active");
-    });
-
-    soundSettingsTab.addEventListener("click", function () {
-        // Affichez le contenu des paramètres du son et masquez le contenu des paramètres du timer
-        soundSettingsContent.style.display = "block";
-        timerSettingsContent.style.display = "none";
-
-        // Ajoutez ou supprimez la classe "active" pour styliser l'onglet actif
-        soundSettingsTab.classList.add("active");
-        timerSettingsTab.classList.remove("active");
-    });
-
-    // Définissez l'onglet "Timer Settings" comme actif par défaut
-    timerSettingsTab.click();
-});
-

@@ -266,7 +266,7 @@
     background-color: #ff8560;
 }
 
-/* ===== PROGRESS BAR ===== */
+/* ===== CERCLE ===== */
 
 .cercle-container {
     display: flex;
@@ -358,8 +358,6 @@
         width: 80px;
         font-size: 9px;
     }
-
-
 }
 
 /* ===== TABLET ===== */
@@ -389,7 +387,6 @@
         margin-bottom: 10px;
     }
 
-
 }
 
 /* ===== DESKTOP ===== */
@@ -407,8 +404,7 @@
 }
 
 
-/* ===== ANIMATION ===== */
-
+/* ===== PROGRESS BAR ===== */
 
 .progress {
     background-color: white;
@@ -418,110 +414,96 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
+    height: 10px;
+    border-radius: 20px;
 }
 
 .determinate {
     width: 0%;
-    height: 4px;
+    height: 10px;
     background-color: green;
+    border-radius: 20px;
 }
 
 
-/* ===== TOGGLE BUTTON ===== */
+
+/* ===== TOGGLE BUTTON & VOLUME ===== */
 
 .toggle-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 50%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.toggle-text {
-    margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .toggle-wrapper {
-    align-items: center;
-    margin-right: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
+.toggle-text {
+  margin-right: 10px;
+}
 
 .toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 30px; 
-    height: 20px;
-    margin-right: 40px;
-}
-
-.toggle-switch input[type="checkbox"] {
-    opacity: 0;
-    width: 0;
-    height: 0;
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
 }
 
 .toggle-label {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    border-radius: 34px;
-    transition: .4s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .toggle-label:before {
-    content: "";
-    position: absolute;
-    height: 14px;
-    width: 14px; 
-    left: 3px; 
-    bottom: 3px;
-    background-color: white;
-    border-radius: 50%;
-    transition: .4s;
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
 }
 
-.toggle-switch input[type="checkbox"]:checked + .toggle-label {
-    background-color: rgb(255, 58, 58);
+input[type="checkbox"] {
+  display: none;
 }
 
-.toggle-switch input[type="checkbox"]:checked + .toggle-label:before {
-    transform: translateX(10px); 
+input[type="checkbox"]:checked + .toggle-label {
+  background-color: #4caf50;
 }
 
-
-
-/* ===== VOLUME ===== */
-.volume-control {
-    display: flex;
-    align-items: center;
-}
-
-#volume-slider {
-    width: 100px; 
-    margin-left: 10px;
+input[type="checkbox"]:checked + .toggle-label:before {
+  transform: translateX(20px);
 }
 
 .volume-control {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .volume-wrapper {
-    align-items: center;
-    margin-right: 10px; 
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
+#volume-slider {
+  width: 100%;
+}
 
 #volume-percentage {
-    margin-left: 5px; 
+  margin-left: 10px;
 }
-
