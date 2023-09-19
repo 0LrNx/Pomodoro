@@ -22,24 +22,23 @@ Vous pouvez accéder au Pomodoro Timer en ligne en [cliquant ici](https://0lrnx.
 - Temps de pause : 5 minutes par défaut (modifiable).
 - Temps de pause longue : 20 minutes par défaut (modifiable).
 
-## 🔔 Notifications sonores
-
-Vous pouvez activer ou désactiver les notifications sonores en utilisant le commutateur dans les paramètres.
-
-## 🔄 Réinitialisation
-
-Si vous souhaitez réinitialiser les paramètres de minuterie et effacer les données locales, cliquez sur le bouton "Reset all" dans les paramètres.
-
 ## 🌟 Fonctionnalités
 
+- Réinitialisation des paramètres de minuterie.
 - Compteur de cycles de travail.
 - Notifications sonores pour signaler le début des pauses et des cycles de travail.
 - Réglage du volume sonore.
+- Possibilité d'effacer les données locales.
 
 ## 📝 Contribution
 
-Toute contribution est la bienvenue ! N'hésitez pas à ouvrir une issue ou à envoyer une demande de pull. 
+Toute contribution est la bienvenue ! N'hésitez pas à ouvrir une issue ou à envoyer une demande de pull.
 
+## 🛠 Technologies utilisées
+
+    🌐 HTML5
+    🎨 CSS3
+    💻 JavaScript
 ---
 
 [Créé avec ❤️ par FI$$](https://github.com/0LrNx)
