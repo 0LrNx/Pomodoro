@@ -8,7 +8,7 @@ let isRunning = false,
     breakTime = 5 * 60,
     longBreakTime = 20 * 60,
     currentTime = workTime,
-    cpt = 0,
+    cpt = 1,
     completedCycles = 0,
     isLongBreakTime = false,
     buttonPlay = document.getElementById('btn-play'),
@@ -165,10 +165,34 @@ function pauseTimer() {
 /**
  * Update the timer's countdown display.
  */
+
+
+let compteur = 0; // Initialisez un compteur à 0
+
 function updateTimer() {
     currentTime--;
+
     if (currentTime < 0) {
-        if (isWorkTime) {
+        compteur++;
+        console.log(compteur);
+        if (compteur % 2 === 0 && compteur % 9 !== 0) {
+            isWorkTime = true;
+            currentTime = workTime;
+            resetElapsedTime();
+            Work.classList.add("active");
+            Break.classList.remove("active");
+            LongBreak.classList.remove("active");
+            audio.play();
+        } else if (compteur % 9 === 0) {
+            isWorkTime = false;
+            isLongBreakTime = true;
+            currentTime = longBreakTime;
+            resetElapsedTime();
+            Work.classList.remove("active");
+            Break.classList.remove("active");
+            LongBreak.classList.add("active");
+            audio.play();
+        } else {
             isWorkTime = false;
             currentTime = breakTime;
             resetElapsedTime();
@@ -176,39 +200,24 @@ function updateTimer() {
             Break.classList.add("active");
             LongBreak.classList.remove("active");
             audio.play();
-        } else {
-            isWorkTime = true;
-            currentTime = workTime;
-            resetElapsedTime();
-            Work.classList.add("active");
-            Break.classList.remove("active");
-            LongBreak.classList.remove("active");
+        }
+        if (compteur % 2 === 0 && compteur % 9 !== 0) {
+            cycleNumber.textContent = `cycles: #${cpt}`;
             cpt++;
-            cycleNumber.textContent = `cycles : #${cpt}`;
-            audio.play();
-            if (cpt % 3 === 0) {
-                currentTime = workTime;
-                console.log("hello");
-                isWorkTime = true;
-                isLongBreakTime = false;
-                // currentTime = longBreakTime;
-                resetElapsedTime();
-                Work.classList.remove("active");
-                Break.classList.remove("active");
-                LongBreak.classList.add("active");
-                audio.play();
-            }
         }
     }
     updateDisplay();
 }
 
+
+
+
+
+
 /**
  * Reset the timer when the "Reset" button is clicked.
  */
 function resetTimer() {
-    cpt = 0;
-    console.log("reset Timer" + cpt + completedCycles);
     location.reload();
     timeSettingsForm.querySelectorAll("input").forEach(function (input) {
         input.disabled = false;
