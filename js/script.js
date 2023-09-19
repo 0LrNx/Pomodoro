@@ -183,13 +183,15 @@ function updateTimer() {
             Work.classList.add("active");
             Break.classList.remove("active");
             LongBreak.classList.remove("active");
-            cycleNumber.textContent = `cycles : #${cpt}`;
             cpt++;
+            cycleNumber.textContent = `cycles : #${cpt}`;
             audio.play();
-            if (cpt % 4 === 0) {
-                isWorkTime = false;
-                isLongBreakTime = true;
-                currentTime = longBreakTime;
+            if (cpt % 3 === 0) {
+                currentTime = workTime;
+                console.log("hello");
+                isWorkTime = true;
+                isLongBreakTime = false;
+                // currentTime = longBreakTime;
                 resetElapsedTime();
                 Work.classList.remove("active");
                 Break.classList.remove("active");
@@ -205,7 +207,8 @@ function updateTimer() {
  * Reset the timer when the "Reset" button is clicked.
  */
 function resetTimer() {
-    localStorage.removeItem('cpt');
+    cpt = 0;
+    console.log("reset Timer" + cpt + completedCycles);
     location.reload();
     timeSettingsForm.querySelectorAll("input").forEach(function (input) {
         input.disabled = false;
