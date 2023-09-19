@@ -36,9 +36,9 @@ Toute contribution est la bienvenue ! N'hésitez pas à ouvrir une issue ou à e
 
 ## 🛠 Technologies utilisées
 
-🌐 HTML5
-🎨 CSS3
-💻 JavaScript
+-🌐 HTML5
+-🎨 CSS3
+-💻 JavaScript
 ---
 
 [Créé avec ❤️ par FI$$](https://github.com/0LrNx)
