@@ -1,6 +1,6 @@
 # 🍅 Pomodoro Timer
 
-![Pomodoro Timer Icon](assets/img/icon-pomodoro.png)
+<img src="assets/img/icon-pomodoro.png" alt="Pomodoro Timer Icon" width="100" height="100">
 
 Un simple minuteur [Pomodoro](https://www.methode-pomodoro.fr/) pour améliorer votre productivité. Organisez votre travail en intervalles de travail et de pause.<br>
 Ce projet a été créé dans le cadre de mon BUT informatique lors de ma deuxième année.
