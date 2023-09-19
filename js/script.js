@@ -134,7 +134,7 @@ function startTimer() {
     if (!isRunning) {
         isRunning = true;
         isTimerRunning = true;
-        timer = setInterval(updateTimer, 1000);
+        timer = setInterval(updateTimer, 100);
         startProgress();
         buttonPlay.style.display = "none";
         buttonPause.style.display = "block";
@@ -252,7 +252,7 @@ function startProgress() {
             progress = 0;
             updateProgressBar(progress);
         }
-    }, 1000);
+    }, 100);
 }
 
 /**

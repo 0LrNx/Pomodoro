@@ -350,10 +350,6 @@
         width: 100%;
     }
 
-    .determinate {
-        display: none;
-    }
-
     #cyclesLongBreak {
         width: 100%;
         font-size: 11px;
@@ -518,7 +514,7 @@ input[type="checkbox"]:checked + .toggle-label:before {
     justify-content: center;
     left: 0;
     bottom: 0;
-    position: fixed;
+    position: absolute  ;
     width: 100%;
     height: 70px;
     color: white;
