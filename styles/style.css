@@ -1,3 +1,5 @@
+/* ===== RESET ===== */
+
 * {
     margin: 0;
     background: rgb(224, 102, 102);
@@ -5,13 +7,13 @@
 }
 
 
+/* ===== GENERAL ===== */
 .title-page {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 40px;
 }
-
-
 
 /* ===== BUTTON ===== */
 
@@ -32,7 +34,7 @@
     background-color: transparent;
     border-radius: 500px;
     border: 1px solid white;
-    color: white;
+    color: black;
     width: 100px;
     height: 30px;
     cursor: pointer;
@@ -62,25 +64,21 @@
 }
 
 
-
-
 #btn-play,
-#btn-pause {
+#btn-pause,
+.button-save {
     color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: white;
     border-radius: 500px;
     width: 100px;
     height: 30px;
     cursor: pointer;
     border: white;
-    align-items: center;
 }
 
 #btn-play:hover,
-#btn-pause:hover {
+#btn-pause:hover,
+.button-save:hover {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,8 +91,31 @@
     cursor: pointer;
 }
 
+.resetStorage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border: none;
+    color: black;
+    background-color: rgb(255, 58, 58);
+    border-radius: 500px;
+    padding: 0 22px;
+    height: 30px;
+    cursor: pointer;
+}
 
-.btn-reset {
+.resetStorage:hover {
+    border: none;
+    color: black;
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+.btn-reset,
+.btn-settings {
     border: none;
     cursor: pointer;
     color: white;
@@ -118,43 +139,145 @@
 
 .phases {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 20%;
+    gap: 20px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.hide {
+/* ===== MODAL ===== */
+
+
+.modal {
     display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.3s ease;
 }
 
-.show {
-    display: block;
+@keyframes slideDown {
+    0% {
+        transform: translateY(-35%);
+        opacity: 0.2;
+    }
+
+    20% {
+        transform: translateY(-30%);
+        opacity: 0.4;
+    }
+
+    30% {
+        transform: translateY(-25%);
+        opacity: 0.6;
+    }
+
+    40% {
+        transform: translateY(-20%);
+        opacity: 0.8;
+    }
+}
+
+.modal.show {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal.show .modal-content {
+    animation: slideDown 0.5s ease;
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+.modal-content {
+    border: 10px solid white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 50%;
+    opacity: 0;
+}
+
+.modal-title {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top-modal {
+    display: flex;
+    flex-direction: initial;
+    align-items: center;
 }
 
 
-/* ===== PROGRESS BAR ===== */
 
-.progress-bar-container {
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#time-settings {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-before-modification {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+
+}
+
+.text-modification {
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f5f2f2;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.text-modification:hover {
+    background-color: #ff8560;
+}
+
+/* ===== CERCLE ===== */
+
+.cercle-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
 
-.progress-bar {
+.cercle {
     height: 200px;
     width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 2px solid white;
-}
-
-.progress-bar-inner {
-    width: 90%;
-    height: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,14 +293,30 @@
     font-size: 24px;
 }
 
+/* ===== DISPLAY VARIABLES ===== */
+
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
 
 /* ===== MEDIA QUERIES ===== */
+
+
+/* ===== PHONE ===== */
 
 @media screen and (max-width: 768px) {
 
     * {
-        background: purple;
+        background-color: rgb(224, 102, 102);
     }
+
 
     .phases {
         font-size: 12px;
@@ -185,18 +324,188 @@
         gap: 20px;
     }
 
+
+    .modal-title {
+        font-size: 20px;
+        width: 250px;
+    }
+
+
+    .text-before-modification {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .close {
+        font-size: 25px;
+        margin-left: 15px;
+    }
+
+    .text-before-modification {
+        width: 120px;
+    }
+
+    .text-modification {
+        width: 100%;
+    }
+
+    .determinate {
+        display: none;
+    }
+
+    #cyclesLongBreak {
+        width: 100%;
+        font-size: 11px;
+    }
+
+    
+}
+
+/* ===== TABLET ===== */
+
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+    * {
+        background-color: rgb(224, 102, 102);
+    }
+
+    .phases {
+        font-size: 16px;
+        width: 40%;
+        gap: 20px;
+    }
+
+    .modal-title {
+        font-size: 30px;
+        width: 300px;
+    }
+
+
+    .text-before-modification {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+}
+
+/* ===== DESKTOP ===== */
+
+@media screen and (min-width: 1025px) {
+
+    .phases {
+        font-size: 14px;
+        width: 40%;
+    }
+
+    .modal-title {
+        font-size: 25px;
+    }
 }
 
 
-.work-bg {
+/* ===== PROGRESS BAR ===== */
+
+.progress {
     background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    height: 10px;
+    border-radius: 20px;
 }
 
-.break-bg {
-    background-color: transparent;
+.determinate {
+    width: 0%;
+    height: 10px;
+    background-color: green;
+    border-radius: 20px;
 }
 
-.longBreakTime-bg {
-    background-color: transparent;
+
+
+/* ===== TOGGLE BUTTON & VOLUME ===== */
+
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.toggle-text {
+  margin-right: 10px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.toggle-label:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + .toggle-label {
+  background-color: #4caf50;
+}
+
+input[type="checkbox"]:checked + .toggle-label:before {
+  transform: translateX(20px);
+}
+
+.volume-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.volume-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#volume-slider {
+  width: 100%;
+}
+
+#volume-percentage {
+  margin-left: 10px;
+}

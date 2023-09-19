@@ -10,52 +10,109 @@
 
     <!-- ICON -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 
     <!-- FONT -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <h1 class="title-page"><u>POMODORO TIMER</u></h1>
+    <div class="container-general">
+        <header>
+            <h1 class="title-page">POMODORO TIMER</h1>
+        </header>
 
-    <div class="phases">
-        <p id="cyclesWork">Work</p>
-        <p id="cyclesBreak">Break</p>
-        <p id="cyclesLongBreak">Long Break</p>
-    </div>
 
-    <div class="progress-bar-container">
-        <div class="progress-bar">
-            <div class="progress-bar-inner">
-                <p class="timer-pomodoro" id="timer"></p>
+        <div class="progress">
+            <div class="determinate" id="progress-bar"></div>
+        </div>
+
+
+        <div class="phases">
+            <p id="cyclesWork">Work</p>
+            <p id="cyclesBreak">Break</p>
+            <p id="cyclesLongBreak">Long Break</p>
+        </div>
+
+        <div class="cercle-container">
+            <div class="cercle">
+                <h2 class="timer-pomodoro" id="timer">25:00</h2>
             </div>
         </div>
-    </div>
-
-    <div class="bouton-container">
 
 
-        <button id="btn-play">
-            start
-        </button>
+        <div class="number-container">
+            <h3 id="cyclesNumber">cycles : #0</h3>
+        </div>
 
-        <button class="hide" id="btn-pause">
-            pause
-        </button>
+        <div class="bouton-container">
 
-        <button class="btn-reset" id="btn-reset">
-            <i class="fa-solid fa-rotate-right"></i>
-        </button>
-    </div>
 
-    <div class="number-container">
-        <p id="cyclesNumber">#0</p>
+            <button id="btn-play">
+                start
+            </button>
+
+            <button class="hide" id="btn-pause">
+                pause
+            </button>
+
+            <button aria-label="Reset" type="submit" class="btn-reset" id="btn-reset">
+                <em class="fa-solid fa-rotate-right"></em>
+            </button>
+
+
+
+
+
+            <button aria-label="Settings" class="btn-settings" id="btn-settings">
+                <em class="fa-solid fa-gear"></em>
+            </button>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="top-modal">
+                        <h1 class="modal-title">Time parameters</h1>
+                        <em class="fa-solid fa-xmark close"></em>
+                    </div>
+                    <form id="time-settings">
+                        <label class="text-before-modification" for="work-time">Working time :</label>
+                        <input class="text-modification" id="work-time" name="work-time" placeholder="Work Time">
+                        <label class="text-before-modification" for="break-time">Break time :</label>
+                        <input class="text-modification" id="break-time" name="break-time" placeholder="Break Time">
+                        <label class="text-before-modification" for="long-break-time">Long Break time :</label>
+                        <input class="text-modification" id="long-break-time" name="long-break-time"
+                            placeholder="LongBreak Time">
+                        <input class="button-save" type="submit" value="Save">
+                    </form>
+                    <div class="toggle-container">
+                        <div class="toggle-wrapper">
+                            <span class="toggle-text">Disable sound</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="audio-toggle">
+                                <label for="audio-toggle" class="toggle-label" aria-label="disable sound"></label>
+                            </div>
+                        </div>
+
+                        <div class="volume-control">
+                            <div class="volume-wrapper">
+                                <span class="toggle-text">Volume</span>
+                                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+                                <span id="volume-percentage"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="resetStorage" id="resetStorage">Reset all</button>
+                </div>
+            </div>
+
+
+
+        </div>
     </div>
 
 
