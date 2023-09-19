@@ -9,6 +9,7 @@ let isRunning = false,
     longBreakTime = 20 * 60,
     currentTime = workTime,
     cpt = 1,
+    compteur = 0,
     completedCycles = 0,
     isLongBreakTime = false,
     buttonPlay = document.getElementById('btn-play'),
@@ -165,13 +166,8 @@ function pauseTimer() {
 /**
  * Update the timer's countdown display.
  */
-
-
-let compteur = 0; // Initialisez un compteur à 0
-
 function updateTimer() {
     currentTime--;
-
     if (currentTime < 0) {
         compteur++;
         console.log(compteur);
@@ -352,6 +348,9 @@ for (let resultat of input) {
         if (valeur === null) {
             this.value = "";
         } else if (valeur == 0) {
+            this.value = "";
+        }
+        if( valeur > 60){
             this.value = "";
         }
     });

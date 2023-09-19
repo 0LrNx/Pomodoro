@@ -355,9 +355,11 @@
     }
 
     #cyclesLongBreak {
-        width: 80px;
-        font-size: 9px;
+        width: 100%;
+        font-size: 11px;
     }
+
+    
 }
 
 /* ===== TABLET ===== */
