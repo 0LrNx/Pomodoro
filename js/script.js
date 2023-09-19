@@ -240,7 +240,6 @@ function updateWindowsDisplay(minutes, seconds) {
     let phaseName = isLongBreakTime ? 'Long Break' : (isWorkTime ? 'Work' : 'Break');
     document.title = `${phaseName} : ${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}`;
 }
-
 // Initialize and start the progress bar.
 let progressBarDisplay = document.getElementById('progress-bar-display');
 
