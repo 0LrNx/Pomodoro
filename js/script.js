@@ -135,7 +135,7 @@ function startTimer() {
     if (!isRunning) {
         isRunning = true;
         isTimerRunning = true;
-        timer = setInterval(updateTimer, 100);
+        timer = setInterval(updateTimer, 1000);
         startProgress();
         buttonPlay.style.display = "none";
         buttonPause.style.display = "block";
@@ -238,7 +238,7 @@ function updateDisplay() {
  */
 function updateWindowsDisplay(minutes, seconds) {
     let phaseName = isLongBreakTime ? 'Long Break' : (isWorkTime ? 'Work' : 'Break');
-    document.title = `POMODORO-${phaseName} : ${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}`;
+    document.title = `${phaseName} : ${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}`;
 }
 
 // Initialize and start the progress bar.
@@ -258,7 +258,7 @@ function startProgress() {
             progress = 0;
             updateProgressBar(progress);
         }
-    }, 100);
+    }, 1000);
 }
 
 
