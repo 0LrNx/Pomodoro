@@ -169,7 +169,6 @@ function updateTimer() {
     currentTime--;
     if (currentTime < 0) {
         compteur++;
-        console.log(compteur);
         if (compteur % 2 === 0 && compteur % 9 !== 0) {
             isWorkTime = true;
             currentTime = workTime;
