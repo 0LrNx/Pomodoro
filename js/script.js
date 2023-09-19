@@ -28,7 +28,7 @@ let isRunning = false,
     interval,
     elapsedTime = 0,
     phaseDuration,
-    audio = new Audio('/assets/audio/stars.mp3'),
+    audio = new Audio('/audio/stars.mp3'),
     isTimerRunning = false,
     workTimeForm = document.getElementById('work-time'),
     breakTimeForm = document.getElementById('break-time'),
@@ -134,7 +134,7 @@ function startTimer() {
     if (!isRunning) {
         isRunning = true;
         isTimerRunning = true;
-        timer = setInterval(updateTimer, 100);
+        timer = setInterval(updateTimer, 1000);
         startProgress();
         buttonPlay.style.display = "none";
         buttonPause.style.display = "block";
@@ -252,7 +252,7 @@ function startProgress() {
             progress = 0;
             updateProgressBar(progress);
         }
-    }, 100);
+    }, 1000);
 }
 
 /**
