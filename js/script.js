@@ -84,7 +84,6 @@ window.onload = function () {
     });
 }
 
-
 // Event listeners for various buttons.
 buttonPlay.addEventListener('click', startTimer);
 buttonPause.addEventListener('click', pauseTimer);
@@ -205,11 +204,6 @@ function updateTimer() {
     updateDisplay();
 }
 
-
-
-
-
-
 /**
  * Reset the timer when the "Reset" button is clicked.
  */
@@ -240,6 +234,7 @@ function updateWindowsDisplay(minutes, seconds) {
     let phaseName = isLongBreakTime ? 'Long Break' : (isWorkTime ? 'Work' : 'Break');
     document.title = `${phaseName} : ${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}`;
 }
+
 // Initialize and start the progress bar.
 let progressBarDisplay = document.getElementById('progress-bar-display');
 
@@ -259,7 +254,6 @@ function startProgress() {
         }
     }, 1000);
 }
-
 
 /**
  * Reset the progress bar.
