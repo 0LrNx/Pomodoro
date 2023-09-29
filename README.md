@@ -6,7 +6,7 @@ Ce projet a été créé dans le cadre de mon BUT informatique lors de ma deuxi�
 
 ## 🌐 Accédez à la page web
 
-Vous pouvez accéder au Pomodoro Timer en ligne en [cliquant ici](https://0lrnx.github.io/Pomodoro-timer/).
+Vous pouvez accéder au Pomodoro Timer en ligne en [cliquant ici](https://0lrnx.github.io/Pomodoro/).
 
 ## 🚀 Comment utiliser
 
